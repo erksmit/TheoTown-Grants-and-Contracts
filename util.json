@@ -1,0 +1,541 @@
+[
+  {
+    "id": "$contracts_menu_script_00",
+    "type": "script",
+    "require privileges": true,
+    "script": "#LuaWrapper",
+    "meta": {
+      "luawrapper": {
+        "script": "contracts_menu.lua",
+        "dev": true
+      }
+    }
+  },
+  {
+    "id": "$contract_expandededucation_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_expandededucation_00",
+      "title id": "$contract_expandededucation_00_title",
+      "text": "$contract_expandededucation_00_text",
+      "advance": 10000,
+      "completion": 100000,
+      "cancellation": 20000,
+      "requirements": {
+        "rank": 9
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$bigschool00", "count": 3}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_nuclearpower_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_nuclearpower_00",
+      "title id": "$contract_nuclearpower_00_title",
+      "text id": "$contract_nuclearpower_00_text",
+      "advance": 50000,
+      "completion": 1000000,
+      "cancellation": 75000,
+      "requirements": {
+        "rank": 11
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$nuclearplant00"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_seatofgovernance_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_seatofgovernance_00",
+      "title id": "$contract_seatofgovernance_00_title",
+      "text id": "$contract_seatofgovernance_00_text",
+      "advance": 1000,
+      "completion": 2000,
+      "cancellation": 500,
+      "requirements": {
+        "rank": 3
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$townhall01"},
+          {"id": "$plaza00"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_publictransport_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_publictransport_00",
+      "title id": "$contract_publictransport_00_title",
+      "text id": "$contract_publictransport_00_text",
+      "advance": 2000,
+      "completion": 10000,
+      "cancellation": 5000,
+      "requirements": {
+        "rank": 3
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$busdepot00"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_goinggreeninitiative_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_goinggreeninitiative_00",
+      "title id": "$contract_goinggreeninitiative_00_title",
+      "text id": "$contract_goinggreeninitiative_00_text",
+      "advance": 5000,
+      "completion": 25000,
+      "cancellation": 10000,
+      "requirements": {
+        "rank": 8
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$solarpanels00", "count": 12},
+          {"id": "$windturbine00", "count": 10}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_agreenerneighbourhood_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_agreenerneighbourhood_00",
+      "title id": "$contract_agreenerneighbourhood_00_title",
+      "text id": "$contract_agreenerneighbourhood_00_text",
+      "advance": 3000,
+      "completion": 5000,
+      "cancellation": 500,
+      "requirements": {
+        "rank": 4
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$middlepark00", "count": 2},
+          {"id": "$treepark00", "count": 3}
+        ],
+        "happiness": [
+          {"type": "park", "value": 0.8}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_breakingground_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_breakingground_00",
+      "title id": "$contract_breakingground_00_title",
+      "text id": "$contract_breakingground_00_text",
+      "advance": 500,
+      "completion": 5000,
+      "cancellation": 1000,
+      "requirements": {
+        "rank": 0
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$solarpanels00", "count": 2},
+          {"id": "$watertower00"}
+        ],
+        "population": [
+          {"count": 750}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_brighterfuture_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_brighterfuture_00",
+      "title id": "$contract_brighterfuture_00_title",
+      "text id": "$contract_brighterfuture_00_text",
+      "advance": 1000,
+      "completion": 7500,
+      "cancellation": 1500,
+      "requirements": {
+        "rank": 3
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$school02"},
+          {"id": "$treepark00", "count": 2}
+        ],
+        "population": [
+          {"count": 500, "level": 1}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_essentialservicesgrant_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_essentialservicesgrant_00",
+      "title id": "$contract_essentialservicesgrant_00_title",
+      "text id": "$contract_essentialservicesgrant_00_text",
+      "advance": 25000,
+      "completion": 5000,
+      "cancellation": 3000,
+      "requirements": {
+        "rank": 5
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$firedepartment00"},
+          {"id": "$police00"},
+          {"id": "$medic00"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_poweringup_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_poweringup_00",
+      "title id": "$contract_poweringup_00_title",
+      "text id": "$contract_poweringup_00_text",
+      "advance": 20000,
+      "completion": 10000,
+      "cancellation": 5000,
+      "requirements": {
+        "rank": 7
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$coalplant00"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_learningandleisure_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_learningandleisure_00",
+      "title id": "$contract_learningandleisure_00_title",
+      "text id": "$contract_learningandleisure_00_text",
+      "advance": 20000,
+      "completion": 15000,
+      "cancellation": 10000,
+      "requirements": {
+        "rank": 10,
+        "contracts completed": ["$contract_expandededucation_00"]
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$school01"},
+          {"id": "$pool00"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_expressconnection_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_expressconnection_00",
+      "title id": "$contract_expressconnection_00_title",
+      "text id": "$contract_expressconnection_00_text",
+      "advance": 12000,
+      "completion": 20000,
+      "cancellation": 3000,
+      "requirements": {
+        "rank": 7
+      },
+      "goals": {
+        "roads": [
+          {"id": "$road05", "count": 80}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_matchday_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_matchday_00",
+      "title id": "$contract_matchday_00_title",
+      "text id": "$contract_matchday_00_text",
+      "advance": 5000,
+      "completion": 15000,
+      "cancellation": 10000,
+      "requirements": {
+        "rank": 10
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$footballstadion00"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_pocketchange_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_pocketchange_00",
+      "title id": "$contract_pocketchange_00_title",
+      "text id": "$contract_pocketchange_00_text",
+      "advance": 500,
+      "completion": 7500,
+      "cancellation": 750,
+      "requirements": {
+        "rank": 2
+      },
+      "goals": {
+        "income": 3000
+      }
+    }
+  },
+  {
+    "id": "$contract_solidreturns_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_solidreturns_00",
+      "title id": "$contract_solidreturns_00_title",
+      "text id": "$contract_solidreturns_00_text",
+      "advance": 1500,
+      "completion": 12500,
+      "cancellation": 2000,
+      "requirements": {
+        "rank": 5,
+        "contracts completed": ["$contract_pocketchange_00"]
+      },
+      "goals": {
+        "income": 10000
+      }
+    }
+  },
+  {
+    "id": "$contract_windfallgains_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_windfallgains_00",
+      "title id": "$contract_windfallgains_00_title",
+      "text id": "$contract_windfallgains_00_text",
+      "advance": 5000,
+      "completion": 25000,
+      "cancellation": 7500,
+      "requirements": {
+        "rank": 10,
+        "contracts completed": ["$contract_solidreturns_00"]
+      },
+      "goals": {
+        "income": 25000
+      }
+    }
+  },
+  {
+    "id": "$contract_airtransitgrant_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_airtransitgrant_00",
+      "title id": "$contract_airtransitgrant_00_title",
+      "text id": "$contract_airtransitgrant_00_text",
+      "advance": 750000,
+      "completion": 1000000,
+      "cancellation": 100000,
+      "requirements": {
+        "rank": 12
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$ap_tower00"},
+          {"id": "$ap_hall00"},
+          {"id": "$ap_gate00"},
+          {"id": "$ap_gate01", "count": 2},
+          {"id": "$ap_gate02", "count": 2}
+        ],
+        "roads": [
+          {"id": "$ap_field00", "count": 48}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_newneighbours_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_newneighbours_00",
+      "title id": "$contract_newneighbours_00_title",
+      "text id": "$contract_newneighbours_00_text",
+      "advance": 1000,
+      "completion": 10000,
+      "cancellation": 500,
+      "requirements": {
+        "contracts completed": ["$contract_breakingground_00"]
+      },
+      "goals": {
+        "population": [
+          {"count": 2500}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_urbanexpansion_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_urbanexpansion_00",
+      "title id": "$contract_urbanexpansion_00_title",
+      "text id": "$contract_urbanexpansion_00_text",
+      "advance": 10000,
+      "completion": 25000,
+      "cancellation": 5000,
+      "requirements": {
+        "contracts completed": ["$contract_newneighbours_00"]
+      },
+      "goals": {
+        "population": [
+          {"count": 10000}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_thegreatsprawl_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_thegreatsprawl_00",
+      "title id": "$contract_thegreatsprawl_00_title",
+      "text id": "$contract_thegreatsprawl_00_text",
+      "advance": 25000,
+      "completion": 50000,
+      "cancellation": 7500,
+      "requirements": {
+        "contracts completed": ["$contract_urbanexpansion_00"]
+      },
+      "goals": {
+        "population": [
+          {"count": 25000}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_finishingtouches_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_finishingtouches_00",
+      "title id": "$contract_finishingtouches_00_title",
+      "text id": "$contract_finishingtouches_00_text",
+      "advance": 100,
+      "completion": 1000,
+      "cancellation": 200,
+      "requirements": {
+        "rank": 2
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$decores00", "count": 50},
+          {"id": "$decocom00", "count": 25},
+          {"id": "$decoind00", "count": 25}
+        ]
+      }
+    }
+  }
+]
