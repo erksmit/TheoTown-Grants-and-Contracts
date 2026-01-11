@@ -295,6 +295,7 @@ local function createContractPreview(menu, contract_id, contract, almost_availab
                         text = TheoTown.translate('$contracts_string_accept'),
                         golden = true,
                         onClick = function()
+                            TheoTown.playSound('$contracts_sound_sign_00')
                             City.earnMoney(contract['advance'])
                             menu.close()
                             table.insert(storage.activeContracts, contract_id)

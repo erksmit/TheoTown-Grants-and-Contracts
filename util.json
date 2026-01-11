@@ -12,6 +12,12 @@
     }
   },
   {
+    "id": "$contracts_sound_sign_00",
+    "type": "sound",
+    "file": "contract_sign.mp3",
+    "volume": 1.2
+  },
+  {
     "id": "$contract_expandededucation_00",
     "type": "data",
     "index": true,
