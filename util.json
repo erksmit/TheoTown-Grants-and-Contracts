@@ -3,13 +3,14 @@
     "id": "$contracts_script_00",
     "type": "script",
     "require privileges": true,
-    "script": "#LuaWrapper",
-    "meta": {
-      "luawrapper": {
-        "script": "main.lua",
-        "dev": true
-      }
-    }
+    "script": "main.lua"
+    //"script": "#LuaWrapper",
+    //"meta": {
+    //  "luawrapper": {
+    //    "script": "main.lua",
+    //    "dev": true
+    //  }
+    //}
   },
   {
     "id": "$contracts_sound_sign_00",

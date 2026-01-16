@@ -1,4 +1,6 @@
 
+local Storage = require('storage')
+
 local Requirements = {}
 
 local storage
@@ -12,7 +14,8 @@ function Requirements.met(def)
     if not req then return true end
 
     -- Minimum rank requirement.
-    if req.rank and City.getRank() < req.rank then return false end
+    local _, rank = City.getRank()
+    if req.rank and rank < req.rank then return false end
 
     -- Completed contracts requirement.
     if req.completed_contracts then

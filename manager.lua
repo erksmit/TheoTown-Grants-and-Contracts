@@ -35,6 +35,38 @@ function Manager.createContractState(def)
     }
 end
 
+function Manager.getActive()
+    if not storage or not storage.contracts then
+        return {}
+    end
+
+    local list = {}
+
+    for _, state in pairs(storage.contracts.active) do
+        table.insert(list, state)
+    end
+
+    return list
+end
+
+function Manager.getAvailable()
+    if not storage or not storage.contracts then
+        return {}
+    end
+
+    local list = {}
+
+    for id, def in pairs(Definitions.getAll()) do
+        if not storage.contracts.active[id]
+        and not storage.contracts.completed[id]
+        and Requirements.met(def) then
+            table.insert(list, def)
+        end
+    end
+
+    return list
+end
+
 function Manager.accept(id)
     if Manager.isActive(id) then return end
     if Manager.countActiveContracts() >= MAX_CONTRACT_COUNT then return end

@@ -10,7 +10,7 @@ function Storage.init()
         completed = {}
     }
 
-    return s.contracts
+    return s
 end
 
 return Storage

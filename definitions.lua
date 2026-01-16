@@ -1,7 +1,7 @@
 
 local Definitions = {}
 
-local contract_defintions = {}
+local contract_definitions = {}
 
 -- Load all defined contracts.
 function Definitions.load()
@@ -9,7 +9,7 @@ function Definitions.load()
         local meta = draft:getMeta()
         if meta and meta.tags and meta.tags.contract then
             local def = Definitions.normalize(meta)
-            contract_defintions[def.id] = def
+            contract_definitions[def.id] = def
         end
     end)
 end
@@ -23,9 +23,14 @@ function Definitions.normalize(meta)
     end
 
     contract.id = contract['contract id']
+
     contract.advance = contract['advance'] or 0
     contract.completion = contract['completion'] or 0
     contract.cancellation = contract['cancellation'] or 0
+
+    contract.title = contract['title'] or TheoTown.translate(contract['title id']) or 'title'
+    contract.text = contract['text'] or TheoTown.translate(contract['text id']) or 'text'
+
     contract.requirements = contract['requirements'] or {}
     contract.goals = contract['goals'] or {}
 
@@ -54,7 +59,12 @@ end
 
 -- Return a contract definition with provided ID.
 function Definitions.get(id)
-    return contract_defintions[id]
+    return contract_definitions[id]
+end
+
+-- Return all contract definitions.
+function Definitions.getAll()
+    return contract_definitions or {}
 end
 
 return Definitions
