@@ -1,5 +1,5 @@
 
-local Manager = require('manager')
+local Definitions = require('definitions')
 
 local Goals = {}
 
@@ -25,8 +25,6 @@ Goals.registerHandler(
     "buildings",
     {
         init = function(state, goals)
-            local listeners = {}
-
             for _, goal in ipairs(goals) do
                 local draft = Draft.getDraft(goal.id)
                 if draft then
@@ -34,9 +32,7 @@ Goals.registerHandler(
                         draft = draft,
                         added = function()
                             if state.status ~= 'active' then return end
-                            if Goals.checkAll(state) then
-                                Manager.complete(state)
-                            end
+                            state._dirty = true
                         end
                     }
                 end
@@ -54,6 +50,84 @@ Goals.registerHandler(
                 end
             end
             return true
+        end
+    }
+)
+
+Goals.registerHandler(
+    "roads",
+    {
+        init = function(state, goals)
+            for _, goal in ipairs(goals) do
+                local draft = Draft.getDraft(goal.id)
+                if draft then
+                    local listener = City.addRoadListener{
+                        draft = draft,
+                        added = function()
+                            if state.status ~= 'active' then return end
+                            state._dirty = true
+                        end
+                    }
+                end
+            end
+        end,
+
+        check = function(state, goals)
+            for _, goal in ipairs(goals) do
+                local draft = Draft.getDraft(goal.id)
+                if not draft then return false end
+
+                local current = City.countRoads(draft)
+                if current < goal.count then
+                    return false
+                end
+            end
+            return true
+        end
+    }
+)
+
+Goals.registerHandler(
+    "population",
+    {
+        init = function(state, goals)
+            state.needsDailyCheck = true
+        end,
+
+        check = function(state, goals)
+            for _, goal in ipairs(goals) do
+                if City.getPeople(goal.level) < goal.count then return false end
+            end
+            return true
+        end
+    }
+)
+
+Goals.registerHandler(
+    "happiness",
+    {
+        init = function(state, goals)
+            state.needsDailyCheck = true
+        end,
+
+        check = function(state, goals)
+            for _, goal in ipairs(goals) do
+                if math.ceil(City.getHappiness(Definitions.getHappinessType(goal.type)) * 100 - 0.5) < (goal.value * 100) then return false end
+            end
+            return true
+        end
+    }
+)
+
+Goals.registerHandler(
+    "income",
+    {
+        init = function(state, goals)
+            state.needsDailyCheck = true
+        end,
+
+        check = function(state, goal)
+            return City.getIncome() >= goal
         end
     }
 )

@@ -18,8 +18,8 @@ function Requirements.met(def)
     if req.rank and rank < req.rank then return false end
 
     -- Completed contracts requirement.
-    if req.completed_contracts then
-        for _, contractId in ipairs(req.completed_contracts) do
+    if req.contracts_completed then
+        for _, contractId in ipairs(req.contracts_completed) do
             if not storage.contracts.completed[contractId] then
                 return false
             end

@@ -2,11 +2,20 @@
 local Definitions = require('definitions')
 local Storage = require('storage')
 local Requirements = require('requirements')
+local Goals = require('goals')
 
 local Manager = {}
 local storage
 
+Manager.onCompleted = {}
+Manager.onCancelled = {}
+
 local MAX_CONTRACT_COUNT = 2
+local SOUNDS = {
+    ACCEPT = '$contracts_sound_sign_00',
+    COMPLETE = '$contracts_sound_complete_00',
+    CANCEL = '$contracts_sound_cancel_00'
+}
 
 function Manager.initCity()
     storage = Storage.init()
@@ -31,8 +40,13 @@ function Manager.createContractState(def)
         id = def.id,
         def = def,
         status = "active", -- active, completed
-        listeners = {}
+        listeners = {},
+        needsDailyCheck = false
     }
+end
+
+function Manager.getMaxActive()
+    return MAX_CONTRACT_COUNT
 end
 
 function Manager.getActive()
@@ -67,17 +81,14 @@ function Manager.getAvailable()
     return list
 end
 
-function Manager.accept(id)
-    if Manager.isActive(id) then return end
-    if Manager.countActiveContracts() >= MAX_CONTRACT_COUNT then return end
+function Manager.canAccept()
+    if Manager.countActiveContracts() < MAX_CONTRACT_COUNT then return true end
+    return false
+end
 
-    local def = Definitions.get(id)
-    if not def then return end
-    if not Requirements.met(def) then return end
-
-    storage.contracts.active[id] = Manager.createContractState(def)
-
-    City.earnMoney(def.advance)
+function Manager.canCancel(state)
+    if City.getMoney() >= state.def.cancellation then return true end
+    return false
 end
 
 function Manager.complete(state)
@@ -87,7 +98,41 @@ function Manager.complete(state)
     storage.contracts.active[state.id] = nil
     storage.contracts.completed[state.id] = true
 
+    TheoTown.playSound(SOUNDS.COMPLETE)
     City.earnMoney(state.def.completion)
+
+    Manager._emit(Manager.onCompleted, state)
+end
+
+function Manager.checkCompletion(state)
+    if state.status ~= 'active' then return end
+    if Goals.checkAll(state) then
+        Manager.complete(state)
+    end
+end
+
+function Manager.accept(id)
+    if Manager.isActive(id) then return end
+    if not Manager.canAccept() then return end
+
+    local def = Definitions.get(id)
+    if not def then return end
+    if not Requirements.met(def) then return end
+
+    local state = Manager.createContractState(def)
+    storage.contracts.active[id] = state
+
+    for goalType, goals in pairs(def.goals) do
+        local handler = Goals.handlers[goalType]
+        if handler and handler.init then
+            handler.init(state, goals)
+        end
+    end
+
+    TheoTown.playSound(SOUNDS.ACCEPT)
+    City.earnMoney(def.advance)
+
+    Manager.checkCompletion(state)
 end
 
 function Manager.cancel(state)
@@ -95,7 +140,14 @@ function Manager.cancel(state)
 
     storage.contracts.active[state.id] = nil
 
+    TheoTown.playSound(SOUNDS.CANCEL)
     City.spendMoney(state.def.advance + state.def.cancellation)
+end
+
+function Manager._emit(list, state)
+    for _, fn in ipairs(list) do
+        fn(state)
+    end
 end
 
 return Manager
