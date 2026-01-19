@@ -47,6 +47,13 @@ function GUI:getFirstPart() end
 ---@param icon? string | draft An animation draft to use as icon. Use nil to reset.
 function Tile.setBuildingIcon(x, y, icon) end
 
+-- Plays a sound.
+---@param sound draft | string A sound draft or id of a sound draft.
+---@param volume? number A value between 0 and 1. (default 1)
+---@param loop? boolean Whether or not to loop the sound. (default false)
+---@return table r A table that contains functions to control the sound.
+function TheoTown.playSound(sound, volume, loop) end
+
 ---@class Vector
 ---@operator add: Vector
 ---@operator sub: Vector

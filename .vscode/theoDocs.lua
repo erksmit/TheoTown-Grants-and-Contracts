@@ -54,7 +54,7 @@ function Array:find(element) end
 ---@return any r The first element that met the condition / the first element / nil.
 function Array:first(predicate) end
 
--- Iterates over all elements of the array and applieds a function on them. This is especially useful to avoid explicit use of a for loop. However, this functional style comes at an allocation and performance cost because of the function. Use it when it suits your needs.
+-- Iterates over all elements of the array and applies a function on them. This is especially useful to avoid explicit use of a for loop. However, this functional style comes at an allocation and performance cost because of the function. Use it when it suits your needs.
 ---@param callbackFunction function 
 function Array:forEach(callbackFunction) end
 
@@ -77,7 +77,7 @@ function Array:last(predicate) end
 ---@return array r The mapped array.
 function Array:map(mapFunction) end
 
--- Returns a random element of the array. Returns if the array is empty.
+-- Returns a random element of the array. Returns nil if the array is empty.
 ---@return any r Randomly selected element.
 function Array:pick() end
 
@@ -750,6 +750,9 @@ function Car:getY() end
 ---@return bool r True iff the car is valid, false otherwise.
 function Car:isValid() end
 
+-- Opens the follow car tool for this specific car. The car cannot be changed and potentially not controlled by the player. If the car despawns the tool will close automatically.
+function Car:openFollowTool() end
+
 -- Removes a tail segment.
 ---@param position? int A one based tail index that indicates which tail segment should be removed. (default nil)
 ---@return bool r True iff a tail segment was removed.
@@ -758,6 +761,11 @@ function Car:removeTail(position) end
 -- Removes the whole tail.
 ---@return bool r True iff at least one tail segment was removed.
 function Car:removeWholeTail() end
+
+-- Sets a blending color for the car. Will only apply to cars whose draft supports frame coloring.
+---@param hexColor string | nil A hex color string that denotes the color to set. nil to reset the color.
+---@param tailIndex? int The index of the tail car to set the color to. -1 will set the color to the whole car chain. 0 will only color the root car etc. (default -1)
+function Car:setColor(hexColor, tailIndex) end
 
 -- Sets the current frame of the car. The frame is actually the index of the variant determined by the total frames of the car / frames per variant. The first variant has index 0.
 ---@param frame int The frame to set.
@@ -876,6 +884,17 @@ function City.countRoads(draft) end
 -- Returns the overall amount of wires in the city.
 ---@return integer r The number of wires.
 function City.countWires() end
+
+-- Returns the overall amount of zones. Optionally of a specific draft.
+---@param draft? draft A zone draft. (optional)
+---@return int r Amount of zones of that type in the city.
+function City.countZones(draft) end
+
+-- Returns a table with funtions to draw the draft and query some information about it. The table is only valid as long as the city is open. This is a costly operation and should only be done rarely. The main intention for this function is to render drafts in some sort of UI.
+---@param draft draft | string The draft or id of a draft a function table should be created for.
+---@param alsoHidden? bool If true this function will also return a table for hidden drafts. (default false)
+---@return table | nil r The table of functions or nil if the draft does not support the operation
+function City.createDraftDrawer(draft, alsoHidden) end
 
 -- Earns amount of the currency named name.
 ---@param name any string
@@ -1072,6 +1091,10 @@ function City.getTax(rci, level) end
 ---@return int r 
 function City.getTime() end
 
+-- Returns the id of the currently opened tool. The default tool (that is selected when no other tool is open) has an id of "Default". In contrast to tool name the id does not depend on current language as it is not visible to the user. You are encouraged to find out different tool ids on your own using this function.
+---@return string r The id of the opened tool.
+function City.getToolId() end
+
 -- Returns the name of the currently opened tool. The default tool (that is selected when no other tool is open) has a name of "Default".
 ---@return string r The name of the opened tool.
 function City.getToolName() end
@@ -1106,6 +1129,10 @@ function City.getYear() end
 ---@param y? int (optional)
 ---@return int r Positive pseudo random number.
 function City.hash(x, y) end
+
+-- Returns true if the current city is using left side traffic.
+---@return bool r The left side traffic state.
+function City.isLeftSideTraffic() end
 
 -- Indicates whether this city is an online city.
 ---@return bool r True iff the city is online
@@ -1184,6 +1211,11 @@ function City.setBackground(draft) end
 ---@param name string 
 ---@param value int 
 function City.setFunVar(name, value) end
+
+-- Sets whether the current city should use left side traffic. Returns the old value.
+---@param leftSide bool True to indicate left sided traffic.
+---@return bool r True if left side traffic was active before, false otherwise.
+function City.setLeftSideTraffic(leftSide) end
 
 -- Sets a new city name
 ---@param newName any string
@@ -1284,7 +1316,7 @@ function Draft.append(json) end
 ---@param ...? any (optional)
 function Draft.callAll(name, arg1, arg2, ...) end
 
--- Returns the draft of the given id. is returned if no draft of the given id was found.
+-- Returns the draft of the given id. nil is returned if no draft of the given id was found.
 ---@param id string 
 ---@return draft r 
 function Draft.getDraft(id) end
@@ -1317,9 +1349,21 @@ function Draft:getBridgePrice() end
 ---@return int r 
 function Draft:getBuildHeight() end
 
+-- Returns the capacity of a car draft.
+---@return int r The capacity of the car, bus stop or building.
+function Draft:getCapacity() end
+
+-- Returns an array of hex colors for shading the primary frames of this draft. Only applicable to car drafts.
+---@return array[string] | nil r An array of hex strings. Is nil if there are no colors.
+function Draft:getColors() end
+
 -- For data drafts only: returns the raw json definition of the draft.
 ---@return table r The json object of the data draft as a Lua table.
 function Draft:getContent() end
+
+-- Returns the amount of vehicles that can be stored in the given depot building.
+---@return int r The depot capacity.
+function Draft:getDepotCapacity() end
 
 -- Returns the diamond price defined for this draft. Not all draft types support to have a price. In the desktop version of the game this function will always return 0.
 ---@return int r Diamond price or 0 if there was no diamond price set. nil if the draft does not support to have a dimaond price.
@@ -1363,6 +1407,19 @@ function Draft:getMonthlyPrice() end
 ---@return int r 
 function Draft:getOrdinal() end
 
+-- Returns an array of hex colors for shading the overlay frames of this draft. Only applicable to car drafts.
+---@return array[string] | nil r An array of hex strings. Is nil if there are no colors.
+function Draft:getOverlayColors() end
+
+-- Returns an overlay frame specified by its index (starting with 1). Only applicable to car drafts.
+---@param frameIndex? int (default 1)
+---@return int r A frame, represented by a single number.
+function Draft:getOverlayFrame(frameIndex) end
+
+-- Returns the number of overlay frames defined in that draft. Only available for Only applicable to car drafts. draft types that use frames (e.g. buildings, roads and cars).
+---@return int r 
+function Draft:getOverlayFrameCount() end
+
 -- Returns the plugin ID of the plugin the draft belongs to. Only plugins downloaded from Plugin Store have such an id.
 ---@return int r Plugin ID of the plugin the draft belongs to; 0 if the plugin was not downloaded from the Plugin Store or if the draft is not part of a plugin
 function Draft:getPluginId() end
@@ -1384,9 +1441,17 @@ function Draft:getPreviewFrameCount() end
 ---@return int r 
 function Draft:getPrice() end
 
--- Returns an array of all attached scripts to this draft. modify the returned array.
+-- Returns an array of all attached scripts to this draft. Do not modify the returned array.
 ---@return array r 
 function Draft:getScripts() end
+
+-- Returns the speed of a car draft.
+---@return number r The speed of the car.
+function Draft:getSpeed() end
+
+-- Returns the tail of a car draft.
+---@return array[CarDraft] | nil r Returns nil if the car has no tail.
+function Draft:getTail() end
 
 -- Returns the localized description of the draft.
 ---@return string r The description.
@@ -1424,23 +1489,23 @@ function Draft:getWidth() end
 ---@return bool r True if the road draft has road decorations
 function Draft:hasDecorations() end
 
--- Returns iff the draft defines an animation.
+-- Returns true iff the draft defines an animation.
 ---@return bool r 
 function Draft:isAnimation() end
 
--- Returns iff the draft defines a building.
+-- Returns true iff the draft defines a building.
 ---@return bool r 
 function Draft:isBuilding() end
 
--- Returns iff the draft defines a car.
+-- Returns true iff the draft defines a car.
 ---@return bool r 
 function Draft:isCar() end
 
--- Returns iff the draft defines a category.
+-- Returns true iff the draft defines a category.
 ---@return bool r 
 function Draft:isCategory() end
 
--- Returns iff the draft defines a commercial building.
+-- Returns true iff the draft defines a commercial building.
 ---@return bool r 
 function Draft:isCommercial() end
 
@@ -1448,15 +1513,19 @@ function Draft:isCommercial() end
 ---@return bool r True iff the building is a composition.
 function Draft:isComposition() end
 
--- Returns iff the draft is declared as final (isFinal in json definition). Cannot be altered during runtime.
+-- Returns true iff the draft is declared as final (isFinal in json definition). Cannot be altered during runtime.
 ---@return bool r True iff this draft is final.
 function Draft:isFinal() end
 
--- Returns iff the draft defines a ground type.
+-- Returns true iff the draft defines a ground type.
 ---@return bool r 
 function Draft:isGround() end
 
--- Returns iff the draft defines a industrial building.
+-- Returns true if the draft has "index" set to true. This is the default for non privileged drafts.
+---@return bool r True if index flag is set.
+function Draft:isIndexed() end
+
+-- Returns true iff the draft defines a industrial building.
 ---@return bool r 
 function Draft:isIndustrial() end
 
@@ -1472,27 +1541,27 @@ function Draft:isPlugin() end
 ---@return bool r True iff the draft is privileged
 function Draft:isPrivileged() end
 
--- Returns iff the draft defines a building that is either residential, commercial or industrial.
+-- Returns true iff the draft defines a building that is either residential, commercial or industrial.
 ---@return bool r 
 function Draft:isRCI() end
 
--- Returns iff the draft defines a residential building.
+-- Returns true iff the draft defines a residential building.
 ---@return bool r 
 function Draft:isResidential() end
 
--- Returns iff the draft defines a road.
+-- Returns true iff the draft defines a road.
 ---@return bool r 
 function Draft:isRoad() end
 
--- Returns iff the draft defines a road decoration.
+-- Returns true iff the draft defines a road decoration.
 ---@return bool r 
 function Draft:isRoadDecoration() end
 
--- Returns iff the draft defines a draft template.
+-- Returns true iff the draft defines a draft template.
 ---@return bool r 
 function Draft:isTemplate() end
 
--- Returns iff the draft defines a tree.
+-- Returns true iff the draft defines a tree.
 ---@return bool r 
 function Draft:isTree() end
 
@@ -1500,7 +1569,7 @@ function Draft:isTree() end
 ---@return bool r True iff this draft is unlocked.
 function Draft:isUnlocked() end
 
--- Returns iff the draft is visible (corresponds to negated hidden attribute in json).
+-- Returns true iff the draft is visible (corresponds to negated hidden attribute in json).
 ---@return bool r 
 function Draft:isVisible() end
 
@@ -1529,9 +1598,25 @@ function Draft:setVisible(state) end
 Drawing = {}
 ---@alias drawing Drawing
 
+-- Changes the currently set color in an additive way. This is useful to darken or lighten the current color in an easy way.
+---@param r integer Red component of the color.
+---@param g? integer Green component of the color. (default r)
+---@param b? integer Blue component of the color. (default g)
+function Drawing.addColor(r, g, b) end
+
 -- Allocates a free frame type integer for use with Drawing.setFrameType. You should only call this function once during the lifecycle of the game to prevent clutter.
 ---@return int r A fresh frame type identifier.
 function Drawing.allocateFrameType() end
+
+-- Draws a circle in the specified rectangle.
+---@param x number 
+---@param y number 
+---@param w number 
+---@param h number 
+---@param fillRatio? number (default 1)
+---@param startAngle? number (default 0)
+---@param endAngle? number (default 2*math.pi)
+function Drawing.drawCircle(x, y, w, h, fillRatio, startAngle, endAngle) end
 
 -- Draws a frame.
 ---@param frame integer | draft A frame or draft (that contains at least one frame).
@@ -1606,6 +1691,14 @@ function Drawing.drawTileFrame(frame) end
 ---@param frame? integer | draft A frame or draft (that contains at least one frame). (default nil)
 function Drawing.drawTriangle(x0, y0, x1, y1, x2, y2, frame) end
 
+-- Draws an image. Uses the current set text frame properties to auto layout it. this layouting includes scaling it to match the current set font's height.
+---@param frame any 
+function Drawing.flowImage(frame) end
+
+-- Draws a text. Uses the current set text frame properties to auto layout it.
+---@param text any 
+function Drawing.flowText(text) end
+
 -- Flushes the drawing pipeline. Can be used to synchronize when things are drawn. Normally frames are drawn in large batches for better performance.
 function Drawing.flush() end
 
@@ -1630,6 +1723,9 @@ function Drawing.getDaytime() end
 -- Returns the shading color that is used for the current day time.
 ---@return int,int,int r Three integers that represent the shading color.
 function Drawing.getDaytimeColor() end
+
+-- Returns the overall height used by flow functions within the current set flow rect.
+function Drawing.getFlowHeight() end
 
 -- Gets the currently set frame type. The frame type is a 0-255 integer number that can be accessed from within the shader. The values 0-64 can be considered as reserved by the game.
 ---@return int r The currently set frame type.
@@ -1664,6 +1760,10 @@ function Drawing.getSize() end
 ---@return number r Height required to draw the text.
 function Drawing.getTextSize(text, font) end
 
+-- For flow text: starts a new line.
+---@param spacing? number Vertical spacing for the new line (default 0.0)
+function Drawing.nl(spacing) end
+
 -- Resets all drawing properties. It's good practice to call this function before using other Drawing functions.
 function Drawing.reset() end
 
@@ -1685,21 +1785,32 @@ function Drawing.setAlpha(alpha) end
 ---@param h number The height for clipping.
 function Drawing.setClipping(x, y, w, h) end
 
--- Sets the drawing color. Component values range from 0 to 255 with 0,0,0 being black and 255,255,255 being white. When drawing things the drawing color is applied in a multiplicative way. So using white as drawing color won't alter the color of images when drawing.
----@param r integer Red component of the color.
+-- Sets the drawing color. Component values range from 0 to 255 with 0,0,0 being black and 255,255,255 being white. When drawing things the drawing color is applied in a multiplicative way. So using white as drawing color won't alter the color of images when drawing. Since version 1.12.17 you can provide a hex string as parameter r; g and b must not be provided then.
+---@param r integer | string Red component of the color.
 ---@param g integer Green component of the color.
 ---@param b integer Blue component of the color.
 function Drawing.setColor(r, g, b) end
+
+-- Sets the default font for drawText, getTextSize and text frame related functions.
+---@param font? font The font to set. (default Font.DEFAULT)
+function Drawing.setFont(font) end
 
 -- Sets a frame type that will be applied to the next drawn frames. The frame type is a 0-255 integer number that can be accessed from within the shader. The values 0-64 can be considered as reserved by the game. It is good practice to set the frame type to the previous value after you are done with it. You should only use frame types that are either defined by the game or were previously allocated using Drawing.allocateFrameType(). If you try to draw frames whose Draft:getFrameType is non zero that frame type will be used instead.
 ---@param frameType int The frame type to set.
 ---@return int r The previously set frame type.
 function Drawing.setFrameType(frameType) end
 
--- Sets the scale for drawing (absolute). 1 for both of them would mean no scaling at all while values greater than 1 will scale things up. values smaller than 1 will draw things smaller.
+-- Sets the scale for drawing (absolute). 1 for both of them would mean no scaling at all while values greater than 1 will scale things up. Values smaller than 1 will draw things smaller.
 ---@param scaleX number Scaling factor for x axis.
 ---@param scaleY number Scaling factor for y axis.
 function Drawing.setScale(scaleX, scaleY) end
+
+-- Sets a text frame rectangle for flow text functions.
+---@param x any 
+---@param y any 
+---@param w any 
+---@param h any 
+function Drawing.setTextFrame(x, y, w, h) end
 
 -- Sets the current drawing offset and scale to a certain tile on the map.
 ---@param tileX integer X coordinate of the tile.
@@ -1751,6 +1862,10 @@ function GUI.get(id) end
 ---@return gui r object that has no parent
 function GUI.getRoot() end
 
+-- Shows a color picker.
+---@param args table A table of arguments.
+function GUI.showColorPicker(args) end
+
 -- Adds a button object. See the for more information.
 ---@param args table A table that contains the GUI object creation parameters.
 ---@return gui r The created button object.
@@ -1761,9 +1876,10 @@ function GUI:addButton(args) end
 ---@return gui r The created canvas object.
 function GUI:addCanvas(args) end
 
--- Adds a hotkey to a GUI object. If the button gets pressed the GUI objects onClick callback function will be called. Usually used for buttons.
+-- Adds a hotkey to a GUI object. If the button gets pressed the GUI object's onClick callback function will be called. Usually used for buttons.
 ---@param key number A keycode as defined in the Keys table.
-function GUI:addHotkey(key) end
+---@param mod? string A modifier key code/name. (default nil)
+function GUI:addHotkey(key, mod) end
 
 -- Adds an icon object. See the for more information.
 ---@param args table A table that contains the GUI object creation parameters.
@@ -1864,9 +1980,13 @@ function GUI:getId() end
 ---@return number r Padding on the bottom side.
 function GUI:getPadding() end
 
--- Returns the parent GUI object of this object. Can be if this is the root object or if this object is not valid anymore (that means not part of the active GUI hierarchy).
+-- Returns the parent GUI object of this object. Can be nil if this is the root object or if this object is not valid anymore (that means not part of the active GUI hierarchy).
 ---@return gui r The parent GUI object.
 function GUI:getParent() end
+
+-- For list boxes returns the current y offset.
+---@return number r the scrolling offset
+function GUI:getShiftY() end
 
 -- Returns the text of a GUI object. Only text related object support this function, e.g. labels, buttons, text fields, ...
 ---@return string r The current text of that object.
@@ -1919,8 +2039,9 @@ function GUI:layout() end
 
 -- Removes a hotkey from the GUI object.
 ---@param key number The keycode of a key to remove.
+---@param mod? string The modifier of a key to remove. (default nil)
 ---@return bool r Returns true iff such a hotkey was actually assigned.
-function GUI:removeHotkey(key) end
+function GUI:removeHotkey(key, mod) end
 
 -- Marks a text field as active, meaning that it will be focused for user input.
 function GUI:setActive() end
@@ -1956,6 +2077,10 @@ function GUI:setPadding(left, top, right, bottom) end
 ---@param x number X coordinate.
 ---@param y number Y coordinate.
 function GUI:setPosition(x, y) end
+
+-- Sets the scrolling offset for a list box. This is useful to restore the scrolling after rebuilding a list box.
+---@param y number the scrolling offset to set
+function GUI:setShiftY(y) end
 
 -- Sets the visibility of the border and background of a textframe or listbox.
 ---@param state boolean The visibility state to apply to the border/background.
@@ -2134,7 +2259,7 @@ function Runtime.toJson(table) end
 Script = {}
 ---@alias script Script
 
--- Returns the current script or if no script is running right now. Since scripts are executed synchronously to avoid race conditions there can only be one script running.
+-- Returns the current script or nil if no script is running right now. Since scripts are executed synchronously to avoid race conditions there can only be one script running.
 ---@return script r 
 function Script.getScript() end
 
@@ -2170,7 +2295,7 @@ function Script:getLocation() end
 ---@return string r 
 function Script:getName() end
 
--- Returns the parent script if there is any, otherwise. A parent script is the script that instantiated this script using Scripts are usually not instantiated by other scripts.
+-- Returns the parent script if there is any, nil otherwise. A parent script is the script that instantiated this script using Scripts are usually not instantiated by other scripts.
 ---@return script r 
 function Script:getParent() end
 
@@ -2194,6 +2319,22 @@ function Script:isActive() end
 ---@param state bool 
 function Script:setActive(state) end
 
+-- For building drafts: Will be called by the building tool the moment after drawing the building preview.
+---@param x int The x coordinate where the building is intended to be built.
+---@param y int The y coordinate where the building is intended to be built.
+---@param frame int The current frame that will be used to draw the building.
+---@param buildable bool Signals if the building is currently considered buildable.
+---@param draft draft The building that is about to be built.
+function Script:afterToolDrawing(x, y, frame, buildable, draft) end
+
+-- For building drafts: Will be called by the building tool the moment before drawing the building preview.
+---@param x int The x coordinate where the building is intended to be built.
+---@param y int The y coordinate where the building is intended to be built.
+---@param frame int The current frame that will be used to draw the building.
+---@param buildable bool Signals if the building is currently considered buildable.
+---@param draft draft The building that is about to be built.
+function Script:beforeToolDrawing(x, y, frame, buildable, draft) end
+
 -- Will be called after the city GUI was built. When entering the city stage this method will not always be called due to GUI caching.
 function Script:buildCityGUI() end
 
@@ -2202,6 +2343,11 @@ function Script:buildCityGUI() end
 ---@param y number 
 ---@param level number 
 function Script:click(x, y, level) end
+
+-- Will be called when the user taps on the map and the current tool did not handle it. This is useful as earlyTap does not know if the current tool will handle the event (for example build tools build things upon tap). So this callback function can be used to implement 'default tap behavior'. If the function returns false no further processing will happen (ie calling click or showing the tile dialog.)
+---@param tileX number 
+---@param tileY number 
+function Script:clickAny(tileX, tileY) end
 
 -- Will be called on a daily basis for every building or road that are instances of the owning draft. Level is 0 for buildings.
 ---@param x any int
@@ -2218,7 +2364,7 @@ function Script:disable() end
 ---@param level int 
 function Script:draw(x, y, level) end
 
--- This event function will be called right after the city was drawn. If you want to draw something directly on top of the city it's a good idead to do it in here.
+-- This event function will be called right after the city was drawn. If you want to draw something directly on top of the city it's a good idea to do it in here.
 function Script:drawCity() end
 
 -- Will be called on all scripts before script:init(). Use this method to set up early things.
@@ -2231,7 +2377,7 @@ function Script:earlyInit() end
 ---@param y number 
 function Script:earlyTap(tileX, tileY, x, y) end
 
--- Will be called when this script is about to be enabled. Scripts are enabled by definiton right after their creation so this method won't be called then.
+-- Will be called when this script is about to be enabled. Scripts are enabled by definition right after their creation so this method won't be called then.
 function Script:enable() end
 
 -- Will be called when the user enters a city.
@@ -2262,6 +2408,9 @@ function Script:exit() end
 ---@param lvl number For roads only: the level of the road.
 ---@param dialog table A dialog table as it is returned by GUI.createTable(...).
 function Script:finishInformationDialog(x, y, lvl, dialog) end
+
+-- Will be called after game loading has finished.
+function Script:finishLoading() end
 
 -- Will be called once after all drafts and scripts have been loaded.
 function Script:init() end
@@ -2335,7 +2484,7 @@ function Script:save() end
 -- Will be called when rebuilding the settings page of the game. Can return a table contains settings items that will then be displayed. See on how to use it.
 function Script:settings() end
 
--- Will be called when the user taps on the map. Will be called just after the tap is handled by the current tool.
+-- Will be called when the user taps on the map. Will be called just after the tap was handled by the current tool.
 ---@param tileX number 
 ---@param tileY number 
 ---@param x number 
@@ -2400,6 +2549,9 @@ function TheoTown.getUserName() end
 -- Returns true iff this version of the game is capable of running multiplayer mode.
 ---@return bool r Whether the game is capable of running multiplayer mode or not.
 function TheoTown.isMultiplayer() end
+
+-- Returns true if the currently selected language prefers a right to left layout.
+function TheoTown.isRTL() end
 
 -- Loads a city file provided by the plugin. path is the file of the city file (thus it includes the .city file ending). Prior to loading the city will be copied to maps or private maps folder first (depending on private value). If a city of similar file name already exists at that directory it will be overridden if overwrite flag is set. The target file name can be changed by specifieing a target name.
 ---@param path string 
@@ -2634,6 +2786,38 @@ function Tile.getRoadAbsoluteLevel(x, y, level) end
 ---@param level int A road level with 0 being ground.
 ---@return int | nil r The absolute alignment of the road with a range from 0 to 15.
 function Tile.getRoadAlign(x, y, level) end
+
+-- Gets the color of an animation of a road. The default color is white which is expressed as 255,255,255,255.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return int,int,int,int | nil r If the operation was successful the color is returned as four integer numbers.
+function Tile.getRoadAnimationColor(x, y, level, slot) end
+
+-- Gets the color of an animation of a road. The default color is white which is expressed as 255,255,255,255. This function applies to road foreground animations.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return int,int,int,int | nil r If the operation was successful the color is returned as four integer numbers.
+function Tile.getRoadAnimationColorFG(x, y, level, slot) end
+
+-- Returns the current frame of an animation that is attached to a road.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return int | nil r The current frame of the animation or nil if something went wrong.
+function Tile.getRoadAnimationFrame(x, y, level, slot) end
+
+-- Returns the current frame of an animation that is attached to a road. This function applies to road foreground animations.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return int | nil r The current frame of the animation or nil if something went wrong.
+function Tile.getRoadAnimationFrameFG(x, y, level, slot) end
 
 -- Returns the bridge type of a road at a given position and level.
 ---@param x int X component of a position.
@@ -2915,6 +3099,22 @@ function Tile.isPipe(x, y) end
 ---@return bool r True iff there is road.
 function Tile.isRoad(x, y, level) end
 
+-- Resumes an animation that is attached to a road.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return bool | nil r Is true iff the specified animation is paused right now, nil if an error occurred.
+function Tile.isRoadAnimationPaused(x, y, level, slot) end
+
+-- Resumes an animation that is attached to a road. This function applies to road foreground animations.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return bool | nil r Is true iff the specified animation is paused right now, nil if an error occurred.
+function Tile.isRoadAnimationPausedFG(x, y, level, slot) end
+
 -- Returns true iff there's a road decoration on the road at a given position and level.
 ---@param x int X component of a position.
 ---@param y int Y component of a position.
@@ -2981,6 +3181,22 @@ function Tile.isWirePole(x, y, level) end
 ---@return int | nil r The current frame of the animation or nil if something went wrong.
 function Tile.pauseBuildingAnimation(x, y, slot) end
 
+-- Pauses an animation that is attached to a road.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return int | nil r The current frame of the animation or nil if something went wrong.
+function Tile.pauseRoadAnimation(x, y, level, slot) end
+
+-- Pauses an animation that is attached to a road. This function applies to road foreground animations.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return int | nil r The current frame of the animation or nil if something went wrong.
+function Tile.pauseRoadAnimationFG(x, y, level, slot) end
+
 -- Resumes an animation that is attached to a building.
 ---@param x int X component of a building position.
 ---@param y int Y component of a building position.
@@ -2988,6 +3204,24 @@ function Tile.pauseBuildingAnimation(x, y, slot) end
 ---@param speed? number A speed multiplier for the animation. (default 1.0)
 ---@return int | nil r The current frame of the animation or nil if something went wrong.
 function Tile.resumeBuildingAnimation(x, y, slot, speed) end
+
+-- Resumes an animation that is attached to a road.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@param speed? number A speed multiplier for the animation. (default 1.0)
+---@return int | nil r The current frame of the animation or nil if something went wrong.
+function Tile.resumeRoadAnimation(x, y, level, slot, speed) end
+
+-- Resumes an animation that is attached to a road. This function applies to road foreground animations.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level? int Level of a road tile. (default 0)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@param speed? number A speed multiplier for the animation. (default 1.0)
+---@return int | nil r The current frame of the animation or nil if something went wrong.
+function Tile.resumeRoadAnimationFG(x, y, level, slot, speed) end
 
 -- Sets the color of an animation of a building. The default color is white which is expressed as 255,255,255 or 255,255,255,255.
 ---@param x int X component of a building position.
@@ -3050,6 +3284,48 @@ function Tile.setGroundHeight(x, y, height) end
 ---@param level int A road level with 0 being ground.
 ---@param alignment int The zero based alignment index to set with a range from 0 to 15.
 function Tile.setRoadAlignment(x, y, level, alignment) end
+
+-- Sets the color of an animation of a road. The default color is white which is expressed as 255,255,255 or 255,255,255,255.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level int Level of a road tile.
+---@param red int The red color component.
+---@param green int The green color component.
+---@param blue int The blue color component.
+---@param alpha? int The alpha color component that is considered as transparency. (default 255)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return bool | nil r Only true if the operation was successful.
+function Tile.setRoadAnimationColor(x, y, level, red, green, blue, alpha, slot) end
+
+-- Sets the color of an animation of a road. The default color is white which is expressed as 255,255,255 or 255,255,255,255. This function applies to road foreground animations.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level int Level of a road tile.
+---@param red int The red color component.
+---@param green int The green color component.
+---@param blue int The blue color component.
+---@param alpha? int The alpha color component that is considered as transparency. (default 255)
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return bool | nil r Only true if the operation was successful.
+function Tile.setRoadAnimationColorFG(x, y, level, red, green, blue, alpha, slot) end
+
+-- Sets the current frame of an animation regardless of whether the animation is playing right now.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level int Level of a road tile.
+---@param frame int The frame to set.
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return bool | nil r Only true if the operation was successful.
+function Tile.setRoadAnimationFrame(x, y, level, frame, slot) end
+
+-- Sets the current frame of an animation regardless of whether the animation is playing right now. This function applies to road foreground animations.
+---@param x int X component of a road position.
+---@param y int Y component of a road position.
+---@param level int Level of a road tile.
+---@param frame int The frame to set.
+---@param slot? int The index of the animation to pause. 1 is the first attached animation. (default 1)
+---@return bool | nil r Only true if the operation was successful.
+function Tile.setRoadAnimationFrameFG(x, y, level, frame, slot) end
 
 -- Sets the bridge type on the road at a given position and level.
 ---@param x int X component of a position.
@@ -3114,12 +3390,38 @@ function Util.collectFullRectTiles(x, y, w, h) end
 ---@return array r An array of {x=..., y=...} positions.
 function Util.collectRectTiles(x, y, w, h, noCorners) end
 
+-- Converts three integer color values to a color hex string.
+---@param red int Red color channel in range 0..255.
+---@param green? int Green color channel in range 0..255. (default red)
+---@param blue? int Blue color channel in range 0..255. (default green)
+---@return string r The color hex string that represents the provided color.
+function Util.color2hex(red, green, blue) end
+
+-- Converts a color hex string into r, g, b color values. Example: 'ff88aa' will output 255, 136, 170
+---@param hex string A color hex string to convert.
+---@return int,int,int r The color components, each in range 0..255.
+function Util.hex2color(hex) end
+
+-- Converts a hsv color to the same color in rgb space.
+---@param h number Hue in range 0..360.
+---@param s number Saturation in range 0..1.
+---@param v number Value in range 0..1.
+---@return int,int,int r red in 0..255, green in 0..255, blue in 0..255
+function Util.hsv2rgb(h, s, v) end
+
 -- Returns the named content of a storage table. If no such entry exists it will be created by a given constructor, saved into the table and returned.
 ---@param src table Source table.
 ---@param name string Name of the entry to load.
 ---@param constructor? function | table A function that returns a new object or the object itself. (optional)
 ---@return any r The object that's effectively in src[name] after the call.
 function Util.optStorage(src, name, constructor) end
+
+-- Converts a rgb color to the same color in hsv space.
+---@param r int Red color channel in range 0..255.
+---@param g int Green color channel in range 0..255.
+---@param b int Blue color channel in range 0..255.
+---@return number,number,number r hue in 0..360, saturation in 0..1, value in 0..1
+function Util.rgb2hsv(r, g, b) end
 
 -- Unites acces on multiple tables. For read access the value of the first table that contains the queried key will be returned. For write access the value is written into all tables using the provided key.
 ---@param table1 table 
@@ -3157,8 +3459,8 @@ function Vector:length() end
 ---@param x? number X component of the vector. (default 0)
 ---@param y? number Y component of the vector. (default 0)
 ---@param z? number Z component of the vector. (default 0)
----@return Vector r 
-function Vector.new(x, y, z) end
+---@return vector r 
+function Vector:new(x, y, z) end
 
 -- Returns a normalized vector that points in the same direction as self.
 ---@return vector r 
