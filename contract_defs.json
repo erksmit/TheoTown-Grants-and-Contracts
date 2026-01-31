@@ -574,5 +574,129 @@
         ]
       }
     }
+  },
+  {
+    "id": "$contract_anteup_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_anteup_00",
+      "title id": "$contract_anteup_00_title",
+      "text id": "$contract_anteup_00_text",
+      "advance": 500,
+      "completion": 2000,
+      "cancellation": 100,
+      "requirements": {
+        "rank": 10
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$com31"}
+        ]
+      }
+    }
+  },
+  //{
+  //  "id": "$contract_supersustainable_00",
+  //  "type": "data",
+  //  "index": true,
+  //  "meta": {
+  //    "tags": {
+  //      "contract": {}
+  //    },
+  //    "contract id": "$contract_supersustainable_00",
+  //    "title id": "$contract_supersustainable_00_title",
+  //    "text id": "$contract_supersustainable_00_text",
+  //    "advance": 0,
+  //    "completion": 0,
+  //    "cancellation": 0,
+  //    "requirements": {
+  //      "rank": 12
+  //    },
+  //    "goals": {
+  //      "buildings": [
+  //        {"id": "$"}
+  //      ]
+  //    }
+  //  }
+  //},
+  {
+    "id": "$contract_conglomeratecenter_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_conglomeratecenter_00",
+      "title id": "$contract_conglomeratecenter_00_title",
+      "text id": "$contract_conglomeratecenter_00_text",
+      "advance": 2000,
+      "completion": 10000,
+      "cancellation": 5000,
+      "requirements": {
+        "rank": 12
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$com37"},
+          {"id": "$com26"},
+          {"id": "$com57_01"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_bigboxinvestment_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_bigboxinvestment_00",
+      "title id": "$contract_bigboxinvestment_00_title",
+      "text id": "$contract_bigboxinvestment_00_text",
+      "advance": 500,
+      "completion": 4000,
+      "cancellation": 2000,
+      "requirements": {
+        "rank": 12
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$prm_com04"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_liquidassets_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_liquidassets_00",
+      "title id": "$contract_liquidassets_00_title",
+      "text id": "$contract_liquidassets_00_text",
+      "advance": 500,
+      "completion": 4000,
+      "cancellation": 2000,
+      "requirements": {
+        "rank": 12
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$ind46", "count": 8},
+          {"id": "$ind26", "count": 2},
+          {"id": "$ind24"}
+        ]
+      }
+    }
   }
 ]
