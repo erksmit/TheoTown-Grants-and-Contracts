@@ -24,6 +24,7 @@
       "$contracts_string_cancel_no": "Jangan dulu",
       "$contracts_string_condition_title": "\n\nSyarat penyelesaian:\n",
       "$contracts_string_condition_build": "Terbangun: %s %i/%i\n",
+      "$contracts_string_condition_build_none": "Remove all: %s %i/%i\n",
       "$contracts_string_condition_population_no_level": "Capai populasi: %s/%s\n",
       "$contracts_string_condition_population_with_level": "Capai populasi (level %i): %s/%s\n",
       "$contracts_string_condition_happiness_no_type": "Capai kebahagiaan: %i%%/%i%%\n",

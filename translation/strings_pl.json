@@ -24,6 +24,7 @@
       "$contracts_string_cancel_no": "Not yet",
       "$contracts_string_condition_title": "\n\nCompletion conditions:\n",
       "$contracts_string_condition_build": "Build: %s %i/%i\n",
+      "$contracts_string_condition_build_none": "Remove all: %s %i/%i\n",
       "$contracts_string_condition_population_no_level": "Reach population: %s/%s\n",
       "$contracts_string_condition_population_with_level": "Reach population (level %i): %s/%s\n",
       "$contracts_string_condition_happiness_no_type": "Reach happiness: %i%%/%i%%\n",

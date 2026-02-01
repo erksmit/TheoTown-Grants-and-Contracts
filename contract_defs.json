@@ -599,30 +599,31 @@
       }
     }
   },
-  //{
-  //  "id": "$contract_supersustainable_00",
-  //  "type": "data",
-  //  "index": true,
-  //  "meta": {
-  //    "tags": {
-  //      "contract": {}
-  //    },
-  //    "contract id": "$contract_supersustainable_00",
-  //    "title id": "$contract_supersustainable_00_title",
-  //    "text id": "$contract_supersustainable_00_text",
-  //    "advance": 0,
-  //    "completion": 0,
-  //    "cancellation": 0,
-  //    "requirements": {
-  //      "rank": 12
-  //    },
-  //    "goals": {
-  //      "buildings": [
-  //        {"id": "$"}
-  //      ]
-  //    }
-  //  }
-  //},
+  {
+    "id": "$contract_supersustainable_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_supersustainable_00",
+      "title id": "$contract_supersustainable_00_title",
+      "text id": "$contract_supersustainable_00_text",
+      "advance": 5000,
+      "completion": 7500,
+      "cancellation": 2500,
+      "requirements": {
+        "rank": 12
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$gasplant00", "count": 0},
+          {"id": "$coalplant00", "count": 0}
+        ]
+      }
+    }
+  },
   {
     "id": "$contract_conglomeratecenter_00",
     "type": "data",

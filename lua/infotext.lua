@@ -11,10 +11,16 @@ function InfoText.buildings(goal)
     local target = goal.count
     local text = ''
 
-    if current < target then text = text .. '[✗] '
-    else text = text .. '[✓] ' end
+    if target == 0 then
+        if current > target then text = text .. '[✗] '
+        else text = text .. '[✓] ' end
+    else
+        if current < target then text = text .. '[✗] '
+        else text = text .. '[✓] ' end
+    end
 
-    text = text .. string.format(TheoTown.translate('$contracts_string_condition_build'), draft:getTitle(), current, target)
+    if target == 0 then text = text .. string.format(TheoTown.translate('$contracts_string_condition_build_none'), draft:getTitle(), current, target)
+    else text = text .. string.format(TheoTown.translate('$contracts_string_condition_build'), draft:getTitle(), current, target) end
 
     return text
 end
@@ -25,10 +31,16 @@ function InfoText.roads(goal)
     local target = goal.count
     local text = ''
 
-    if current < target then text = text .. '[✗] '
-    else text = text .. '[✓] ' end
+    if target == 0 then
+        if current > target then text = text .. '[✗] '
+        else text = text .. '[✓] ' end
+    else
+        if current < target then text = text .. '[✗] '
+        else text = text .. '[✓] ' end
+    end
 
-    text = text .. string.format(TheoTown.translate('$contracts_string_condition_build'), draft:getTitle(), current, target)
+    if target == 0 then text = text .. string.format(TheoTown.translate('$contracts_string_condition_build_none'), draft:getTitle(), current, target)
+    else text = text .. string.format(TheoTown.translate('$contracts_string_condition_build'), draft:getTitle(), current, target) end
 
     return text
 end

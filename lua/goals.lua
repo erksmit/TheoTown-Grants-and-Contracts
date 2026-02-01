@@ -56,6 +56,9 @@ Goals.registerHandler(
                         added = function()
                             if state.status ~= 'active' then return end
                             state._dirty = true
+                        end,
+                        removed = function()
+                            state._dirty = true
                         end
                     }
                 end
@@ -68,7 +71,11 @@ Goals.registerHandler(
                 if not draft then return false end
 
                 local current = City.countBuildings(draft)
-                if current < goal.count then
+                if goal.count == 0 then
+                    if current ~= 0 then
+                        return false
+                    end
+                elseif current < goal.count then
                     return false
                 end
             end
@@ -89,6 +96,9 @@ Goals.registerHandler(
                         added = function()
                             if state.status ~= 'active' then return end
                             state._dirty = true
+                        end,
+                        removed = function()
+                            state._dirty = true
                         end
                     }
                 end
@@ -101,7 +111,11 @@ Goals.registerHandler(
                 if not draft then return false end
 
                 local current = City.countRoads(draft)
-                if current < goal.count then
+                if goal.count == 0 then
+                    if current ~= 0 then
+                        return false
+                    end
+                elseif current < goal.count then
                     return false
                 end
             end

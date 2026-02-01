@@ -64,10 +64,11 @@ All goals listed in the `"goals"` object have to be fulfilled to complete the co
 "goals": {
   "buildings": [
     // At least "count" buildings of ID "id" have to be built. "count" is optional and 1 by default.
+    // "count" of 0 will only be considered completed if there are exactly 0 buildings in the city.
     {"id": "$building_id_00", "count": 4}
   ],
   "roads": [
-    // Same as above, but for road type drafts.
+    // Same as above, but for road type drafts. "count": 0 rule also applies here.
     {"id": "$road_id", "count": 50}
   ],
   "population": [

@@ -118,15 +118,6 @@ function UI.createContractPreview(menu, def, state, status)
         actions = buttons
     }
 
-    -- Add a warning if max contract count has been reached.
-    if not (state and state.status == 'active') and not Manager.canAccept() then
-        local warning = preview.controls:addLabel{
-            text = string.format(TheoTown.translate('$contracts_string_max_contract_count'), Manager.getMaxActive())
-        }
-
-        warning:setColor(154, 0, 0)
-        warning:setAlignment(0, 0.5)
-    end
 
     -- Add a warning if a contract is almost available.
     if status then
@@ -137,6 +128,15 @@ function UI.createContractPreview(menu, def, state, status)
 
         local warning = preview.controls:addLabel{
             text = text
+        }
+
+        warning:setColor(154, 0, 0)
+        warning:setAlignment(0, 0.5)
+
+    -- Add a warning if max contract count has been reached.
+    elseif not (state and state.status == 'active') and not Manager.canAccept() then
+        local warning = preview.controls:addLabel{
+            text = string.format(TheoTown.translate('$contracts_string_max_contract_count'), Manager.getMaxActive())
         }
 
         warning:setColor(154, 0, 0)
@@ -192,16 +192,17 @@ function UI.addAvailableContractRow(menu, parent, def)
         onClick = function() UI.createContractPreview(menu, def) end
     }
 
-    -- Add a gray 'available' label next to the contract (unless max contract count has been reached).
-    if Manager.canAccept() then
-        local available_label = entry:addLabel{
-            text = TheoTown.translate('$contracts_string_available')
-        }
+    -- Add a gray 'available' label next to the contract (also if max contract count has been reached).
+    local available_label = entry:addLabel{
+        text = TheoTown.translate('$contracts_string_available')
+    }
 
-        available_label:setAlignment(1, 0.5)
-        available_label:setPadding(0, 0, 32, 0)
-        available_label:setColor(150, 150, 150)
-    else
+    available_label:setAlignment(1, 0.5)
+    available_label:setPadding(0, 0, 32, 0)
+    available_label:setColor(150, 150, 150)
+
+    -- Gray out the contract if max contract count has been reached.
+    if not Manager.canAccept() then
         label:setColor(150, 150, 150)
     end
 end
@@ -224,6 +225,15 @@ function UI.addAlmostAvailableContractRow(menu, parent, def, status)
         icon = Icon.INFO,
         onClick = function() UI.createContractPreview(menu, def, nil, status) end
     }
+
+    -- Add a gray 'locked' label next to the contract.
+    local locked_label = entry:addLabel{
+        text = TheoTown.translate('$contracts_string_locked')
+    }
+
+    locked_label:setAlignment(1, 0.5)
+    locked_label:setPadding(0, 0, 32, 0)
+    locked_label:setColor(150, 150, 150)
 
     -- Gray out the contract.
     label:setColor(150, 150, 150)
