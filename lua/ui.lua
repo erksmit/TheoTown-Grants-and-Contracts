@@ -255,17 +255,32 @@ function UI.createContractsMenu()
         height = -10
     }
 
+    local isEmpty = true
+
     -- List all active/available/almost available contracts.
     for _, state in pairs(Manager.getActive()) do
         UI.addActiveContractRow(contractsMenu, listbox, state)
+        isEmpty = false
     end
 
     for _, def in pairs(Manager.getAvailable()) do
         UI.addAvailableContractRow(contractsMenu, listbox, def)
+        isEmpty = false
     end
 
     for _, entry in pairs(Manager.getAlmostAvailable()) do
         UI.addAlmostAvailableContractRow(contractsMenu, listbox, entry.def, entry.status)
+        isEmpty = false
+    end
+
+    -- Add an info text if no contracts are available.
+    if isEmpty then
+        local label = listbox:addTextFrame{
+            text = TheoTown.translate('$contracts_string_not_available')
+        }
+
+        label:setAlignment(0.5, 0.5)
+        label:setColor(150, 150, 150)
     end
 
     -- Add an active contract counter.

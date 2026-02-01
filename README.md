@@ -9,20 +9,24 @@ This plugin introduces various structured monetary contracts and grants offered 
 - Contracts support various requirement and goal types (population, buildings, income, city rank, etc.)
 
 ## Planned features
-- Additional requirement and goal types
-- Contracts menu and controls hotkeys
-- Failsafe checks for incorrectly implemented contract drafts
+- Add additional requirement and goal types
+- Add contracts menu and controls hotkeys
+- Implement failsafe checks for incorrectly implemented contract drafts
+- Don't show the menu if all possible contracts have already been completed
+- Invert logic for negative income goals
 
 ## Changelog
 A list of major changes to the public version will be kept up to date here.
-There is no public version yet.
+
+### Pre-release v0.1
+- Initial stable release with most planned features implemented.
 
 ## Defining custom contracts
 This section goes over the details necessary to define functioning contracts of your own.
 
 ### Basic syntax
 Contracts are defined entirely through JSON. An example contract can be defined as follows:
-```json
+```jsonc
 {
   "id": "$contract_example_00",
   "type": "data",
@@ -51,7 +55,7 @@ Contracts are defined entirely through JSON. An example contract can be defined 
 
 ### Contract requirements
 All requirements listed in the `"requirements"` object have to be fulfilled to accept the contract. Currently available requirement types are:
-```json
+```jsonc
 "requirements": {
   "rank": 3,
   "contracts completed": ["$contract_example_00"] // Multiple contract IDs can be provided here.
@@ -60,7 +64,7 @@ All requirements listed in the `"requirements"` object have to be fulfilled to a
 
 ### Contract goals
 All goals listed in the `"goals"` object have to be fulfilled to complete the contract. Currently available goal types are:
-```json
+```jsonc
 "goals": {
   "buildings": [
     // At least "count" buildings of ID "id" have to be built. "count" is optional and 1 by default.
@@ -85,7 +89,7 @@ All goals listed in the `"goals"` object have to be fulfilled to complete the co
 
 ## Translations
 If you would like to help by translating strings, you can do so by copying the `strings.json` file, renaming it to `strings_xx.json` (where `xx` is the corresponding ISO 639-1 language code), and modifying it like so:
-```json
+```jsonc
 [
   {
     "id": "$kulche_contract_strings_00_xx", // Make sure to change the ID!
@@ -103,4 +107,5 @@ Thank you if you choose to contribute!
 
 ## Credits & legal
 Plugin created by Kulche. Special thanks to JustAnyone and Lobby. Sound effects derived from Freesound content.
+Translations by flxzor (Indonesian).
 Do not reupload files from this repository anywhere else, or claim them as your own.
