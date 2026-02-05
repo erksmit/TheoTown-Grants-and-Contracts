@@ -23,6 +23,7 @@ end
 
 function script:buildCityGUI()
     UI.addSidebarButton()
+    UI.addProgressDisplay()
 end
 
 -- Perform daily checks for the contracts that require them.

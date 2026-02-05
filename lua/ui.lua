@@ -297,7 +297,7 @@ end
 
 -- Add the button to the sidebar.
 function UI.addSidebarButton()
-    if not City.isReadonly() and not City.isSandbox() then
+    if not City.isReadonly() and not City.isSandbox() and not DSA.isInMoon() then
         local sidebar = GUI.get('sidebarLine')
         local size = sidebar:getFirstPart():getChild(2):getWidth()
         local button = sidebar:getFirstPart():addButton{
@@ -309,6 +309,48 @@ function UI.addSidebarButton()
             onClick = function() UI.createContractsMenu() end
         }
     end
+end
+
+-- Display active contract status on the screen (relative to the minimap).
+function UI.addProgressDisplay()
+    local minimap = GUI.get('cmdMinimap')
+    local minimapX, minimapY = minimap:getAbsoluteX(), minimap:getAbsoluteY()
+    local minimapW = minimap:getWidth()
+
+    local w = 120
+    local h = 100
+
+    local canvas = GUI.getRoot():addCanvas{
+        w = w,
+        h = h,
+        x = minimapX + minimapW - w,
+        y = minimapY - h,
+        onDraw = function(self, x, y, w, h)
+
+            -- Draw the gradient background.
+            -- Drawing.setAlpha(0.2)
+            -- Drawing.drawRect(x, y, w, h)
+            -- Drawing.setAlpha(1)
+
+            -- Draw goal information.
+            local states = Manager.getActive()
+            if not states then return end
+
+            local offset = 0
+
+            for _, state in ipairs(states) do
+                local display = InfoText.getDisplay(state.def)
+
+                for _, entry in ipairs(display) do
+                    Drawing.drawText(entry.text, x + w, y - entry.offset - offset + h, nil, 1, 1)
+                end
+
+                offset = offset + (#display * 15)
+            end
+        end
+    }
+
+    canvas:setTouchThrough(true)
 end
 
 function UI.init()
