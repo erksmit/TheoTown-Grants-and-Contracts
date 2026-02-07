@@ -3,6 +3,7 @@
 
 local Manager = require('manager')
 local InfoText = require('infotext')
+local Assets = require('assets')
 
 local UI = {}
 
@@ -311,26 +312,38 @@ function UI.addSidebarButton()
     end
 end
 
+local function getProgressHeight()
+    local states = Manager.getActive()
+    if not states or #states == 0 then return 0 end
+
+    local lines = 0
+
+    for _, state in ipairs(states) do
+        local display = InfoText.getDisplay(state.def)
+        lines = lines + #display
+    end
+
+    return lines * 15
+end
+
 -- Display active contract status on the screen (relative to the minimap).
 function UI.addProgressDisplay()
     local minimap = GUI.get('cmdMinimap')
     local minimapX, minimapY = minimap:getAbsoluteX(), minimap:getAbsoluteY()
     local minimapW = minimap:getWidth()
 
-    local w = 120
-    local h = 100
-
     local canvas = GUI.getRoot():addCanvas{
-        w = w,
-        h = h,
-        x = minimapX + minimapW - w,
-        y = minimapY - h,
+        w = 0,
+        h = 0,
+        x = minimapX + minimapW,
+        y = minimapY,
         onDraw = function(self, x, y, w, h)
 
             -- Draw the gradient background.
-            -- Drawing.setAlpha(0.2)
-            -- Drawing.drawRect(x, y, w, h)
-            -- Drawing.setAlpha(1)
+            local progressW = 150
+            local progressH = getProgressHeight()
+
+            Drawing.drawImageRect(Assets.FRAMES.GOAL_BACKGROUND, x - progressW, y - progressH, progressW, progressH)
 
             -- Draw goal information.
             local states = Manager.getActive()

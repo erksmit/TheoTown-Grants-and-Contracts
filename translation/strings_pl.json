@@ -34,6 +34,8 @@
       "$contracts_string_completed_text": "Congratulations! You have successfully completed the '%s' contract. The completion reward of %s has been transferred to the city's treasury.",
       "$contracts_string_rewards": "\nAdvance payment: %s\nCompletion reward: %s\nCancellation fee: %s",
 
+      "$contract_string_display_goals": "Display goals in city view",
+
       "$contract_expandededucation_00_title": "Rozbudowa Edukacji",
       "$contract_expandededucation_00_text": "With a rapidly growing population, the demand for quality education has never been higher. The city needs several brand new elementary schools to accommodate the influx of new students. The governor would like to see at least 3 new state-of-the-art school buildings built in the city. Fulfill his wishes and a nice grant will come your way.",
       "$contract_nuclearpower_00_title": "Energia Jądrowa",

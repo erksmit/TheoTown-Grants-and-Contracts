@@ -6,13 +6,24 @@ local Storage = require('storage')
 local Manager = require('manager')
 local Requirements = require('requirements')
 local UI = require('ui')
+local Assets = require('assets')
+local Settings = require('settings')
 
 local storage
 
 UI.init()
 
+function script:init()
+    Assets.init()
+    Settings.init()
+end
+
 function script:lateInit()
     Definitions.load()
+end
+
+function script:settings()
+    Settings.update()
 end
 
 function script:enterCity()
@@ -23,6 +34,8 @@ end
 
 function script:buildCityGUI()
     UI.addSidebarButton()
+
+    -- if Settings.DISPLAY_GOALS then UI.addProgressDisplay() end
     UI.addProgressDisplay()
 end
 

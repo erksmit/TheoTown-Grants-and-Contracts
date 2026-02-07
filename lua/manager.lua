@@ -5,6 +5,7 @@ local Definitions = require('definitions')
 local Storage = require('storage')
 local Requirements = require('requirements')
 local Goals = require('goals')
+local Assets = require('assets')
 
 local Manager = {}
 local storage
@@ -13,11 +14,6 @@ Manager.onCompleted = {}
 Manager.onCancelled = {}
 
 local MAX_CONTRACT_COUNT = 2
-local SOUNDS = {
-    ACCEPT = '$contracts_sound_sign_00',
-    COMPLETE = '$contracts_sound_complete_00',
-    CANCEL = '$contracts_sound_cancel_00'
-}
 
 -- Returns true if contract is currently active.
 function Manager.isActive(id)
@@ -130,7 +126,7 @@ function Manager.complete(state)
     storage.contracts.active[state.id] = nil
     storage.contracts.completed[state.id] = true
 
-    TheoTown.playSound(SOUNDS.COMPLETE)
+    TheoTown.playSound(Assets.SOUNDS.COMPLETE)
     City.earnMoney(state.def.completion)
 
     Manager._emit(Manager.onCompleted, state)
@@ -163,7 +159,7 @@ function Manager.accept(id)
         end
     end
 
-    TheoTown.playSound(SOUNDS.ACCEPT)
+    TheoTown.playSound(Assets.SOUNDS.ACCEPT)
     City.earnMoney(def.advance)
 
     -- Listeners don't get updated until something is actually built. This line checks if goals are met just as the contract is signed.
@@ -176,7 +172,7 @@ function Manager.cancel(state)
 
     storage.contracts.active[state.id] = nil
 
-    TheoTown.playSound(SOUNDS.CANCEL)
+    TheoTown.playSound(Assets.SOUNDS.CANCEL)
     City.spendMoney(state.def.advance + state.def.cancellation)
 end
 

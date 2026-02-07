@@ -22,5 +22,12 @@
     "type": "sound",
     "file": "sounds/contract_cancel.mp3",
     "volume": 0.6
+  },
+  {
+    "id": "$contracts_goal_display_background_00",
+    "type": "animation",
+    "frames": [
+      {"bmp": "goal_display_background.png"}
+    ]
   }
 ]

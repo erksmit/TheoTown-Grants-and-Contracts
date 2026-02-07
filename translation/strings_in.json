@@ -34,6 +34,8 @@
       "$contracts_string_completed_text": "Selamat! Kamu berhasil menyelesaikan kontrak '%s'. Hadiah penyelesaian sebesar %s sudah masuk ke kas kota.",
       "$contracts_string_rewards": "\nPembayaran awal: %s\nHadiah penyelesaian: %s\nBiaya pembatalan: %s",
 
+      "$contract_string_display_goals": "Display goals in city view",
+
       "$contract_expandededucation_00_title": "Perluasan Pendidikan",
       "$contract_expandededucation_00_text": "Dengan jumlah penduduk yang terus bertambah, kebutuhan akan pendidikan semakin tinggi. Kota membutuhkan beberapa sekolah dasar baru untuk menampung siswa. Gubernur meminta setidaknya 3 sekolah modern (state-of-the-art school) dibangun di kota. Wujudkan permintaannya dan kamu akan menerima hibah yang menarik.",
       "$contract_nuclearpower_00_title": "Tenaga Nuklir",
