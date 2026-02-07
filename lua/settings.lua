@@ -3,18 +3,23 @@
 
 local Settings = {}
 
-function Settings.init()
-    Settings = Util.optStorage(TheoTown.getStorage(), 'Grants & Contracts Settings')
+local storage
 
-    Settings.DISPLAY_GOALS = Settings.DISPLAY_GOALS == nil and true or Settings.DISPLAY_GOALS
+function Settings.init()
+    storage = Util.optStorage(TheoTown.getStorage(), '$contracts_settings_storage_00')
+
+    if storage.DISPLAY_GOALS == nil then storage.DISPLAY_GOALS = true end
 end
 
-function Settings.update()
+function Settings.get()
     return {
         {
             name = TheoTown.translate('$contract_string_display_goals'),
-            value = Settings.DISPLAY_GOALS,
-            onChange = function(newState) Settings.DISPLAY_GOALS = newState end
+            value = storage.DISPLAY_GOALS,
+            onChange = function(newState)
+                storage.DISPLAY_GOALS = newState
+                Settings.DISPLAY_GOALS = newState
+            end
         }
     }
 end
