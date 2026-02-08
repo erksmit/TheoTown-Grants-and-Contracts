@@ -114,7 +114,7 @@ function UI.createContractPreview(menu, def, state, status)
     local preview = GUI.createDialog{
         icon = Icon.SETTINGS,
         title = def.title,
-        text = def.text .. InfoText.get(def),
+        text = def.text .. InfoText.getPreview(def),
         height = 300,
         actions = buttons
     }
@@ -340,7 +340,7 @@ function UI.addProgressDisplay()
         onDraw = function(self, x, y, w, h)
 
             -- Draw the gradient background.
-            local progressW = 150
+            local progressW = 180
             local progressH = getProgressHeight()
 
             Drawing.drawImageRect(Assets.FRAMES.GOAL_BACKGROUND, x - progressW, y - progressH, progressW, progressH)
@@ -355,6 +355,7 @@ function UI.addProgressDisplay()
                 local display = InfoText.getDisplay(state.def)
 
                 for _, entry in ipairs(display) do
+                    Drawing.setColor(entry.color.r, entry.color.g, entry.color.b)
                     Drawing.drawText(entry.text, x + w, y - entry.offset - offset + h, nil, 1, 1)
                 end
 
@@ -363,6 +364,7 @@ function UI.addProgressDisplay()
         end
     }
 
+    canvas:setChildIndex(1) -- Put the display under the minimap.
     canvas:setTouchThrough(true)
 end
 

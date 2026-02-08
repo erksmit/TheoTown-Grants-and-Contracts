@@ -23,7 +23,7 @@ function script:lateInit()
 end
 
 function script:settings()
-    return Settings.get()
+    return Settings.update()
 end
 
 function script:enterCity()
@@ -35,7 +35,7 @@ end
 function script:buildCityGUI()
     UI.addSidebarButton()
 
-    if Settings.DISPLAY_GOALS then UI.addProgressDisplay() end
+    if Settings.getDisplayGoals() then UI.addProgressDisplay() end
 end
 
 -- Perform daily checks for the contracts that require them.

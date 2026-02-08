@@ -161,7 +161,7 @@
       "title id": "$contract_breakingground_00_title",
       "text id": "$contract_breakingground_00_text",
       "advance": 500,
-      "completion": 5000,
+      "completion": 7500,
       "cancellation": 1000,
       "requirements": {
         "rank": 0
@@ -347,7 +347,7 @@
         "rank": 2
       },
       "goals": {
-        "income": 3000
+        "income": 4000
       }
     }
   },
@@ -370,7 +370,7 @@
         "contracts completed": ["$contract_pocketchange_00"]
       },
       "goals": {
-        "income": 10000
+        "income": 15000
       }
     }
   },
@@ -393,7 +393,7 @@
         "contracts completed": ["$contract_solidreturns_00"]
       },
       "goals": {
-        "income": 25000
+        "income": 30000
       }
     }
   },
@@ -512,10 +512,10 @@
       "title id": "$contract_finishingtouches_00_title",
       "text id": "$contract_finishingtouches_00_text",
       "advance": 100,
-      "completion": 1000,
-      "cancellation": 200,
+      "completion": 4000,
+      "cancellation": 1500,
       "requirements": {
-        "rank": 2
+        "rank": 1
       },
       "goals": {
         "buildings": [
