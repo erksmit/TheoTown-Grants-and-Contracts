@@ -661,9 +661,9 @@
       "contract id": "$contract_bigboxinvestment_00",
       "title id": "$contract_bigboxinvestment_00_title",
       "text id": "$contract_bigboxinvestment_00_text",
-      "advance": 500,
-      "completion": 4000,
-      "cancellation": 2000,
+      "advance": 1500,
+      "completion": 7500,
+      "cancellation": 4000,
       "requirements": {
         "rank": 12
       },
@@ -696,6 +696,142 @@
           {"id": "$ind46", "count": 8},
           {"id": "$ind26", "count": 2},
           {"id": "$ind24"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_retailroyalty_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_retailroyalty_00",
+      "title id": "$contract_retailroyalty_00_title",
+      "text id": "$contract_retailroyalty_00_text",
+      "advance": 5000,
+      "completion": 15000,
+      "cancellation": 10000,
+      "requirements": {
+        "rank": 13
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$com64"},
+          {"id": "$prm_com05"},
+          {"id": "$com50"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_affordableliving_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_affordableliving_00",
+      "title id": "$contract_affordableliving_00_title",
+      "text id": "$contract_affordableliving_00_text",
+      "advance": 2000,
+      "completion": 7500,
+      "cancellation": 4000,
+      "requirements": {
+        "rank": 5
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$res98", "count": 2},
+          {"id": "$res63", "count": 2},
+          {"id": "$res101"},
+          {"id": "$res102"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_residentialpotential_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_residentialpotential_00",
+      "title id": "$contract_residentialpotential_00_title",
+      "text id": "$contract_residentialpotential_00_text",
+      "advance": 4000,
+      "completion": 15000,
+      "cancellation": 8000,
+      "requirements": {
+        "rank": 7
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$res77", "count": 2},
+          {"id": "$res188"},
+          {"id": "$genres00variant9"},
+          {"id": "$genres00variant12"},
+          {"id": "$genres00variant15"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_highriseprestige_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_highriseprestige_00",
+      "title id": "$contract_highriseprestige_00_title",
+      "text id": "$contract_highriseprestige_00_text",
+      "advance": 7500,
+      "completion": 25000,
+      "cancellation": 12000,
+      "requirements": {
+        "rank": 13
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$prm_res06"},
+          {"id": "$res174_02"},
+          {"id": "$prm_res07_02"},
+          {"id": "$prm_res_14_02"}
+        ]
+      }
+    }
+  },
+  {
+    "id": "$contract_ironthrone_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_ironthrone_00",
+      "title id": "$contract_ironthrone_00_title",
+      "text id": "$contract_ironthrone_00_text",
+      "advance": 5000,
+      "completion": 18000,
+      "cancellation": 10000,
+      "requirements": {
+        "rank": 8
+      },
+      "goals": {
+        "buildings": [
+          {"id": "$ind53"},
+          {"id": "$ind52"},
+          {"id": "$ind43"},
+          {"id": "$ind20", "count": 3},
+          {"id": "$ind28", "count": 3}
         ]
       }
     }

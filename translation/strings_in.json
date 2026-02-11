@@ -91,7 +91,17 @@
       "$contract_bigboxinvestment_00_title": "Big Box Investment",
       "$contract_bigboxinvestment_00_text": "Shopping isn't just a hobby, it's a lifestyle (for some)! It's time to build a large shopping mall so inhabitants can browse, aimlessly wander and forget why they came. Such an investment will surely pay off in increased tax rolls and food courts per capita.",
       "$contract_liquidassets_00_title": "Liquid Assets",
-      "$contract_liquidassets_00_text": "Beneath the ground lies opportunity. Establishing petroleum extraction and processing facilities will provide industrial growth, local exports and a massive change to the air quality."
+      "$contract_liquidassets_00_text": "Beneath the ground lies opportunity. Establishing petroleum extraction and processing facilities will provide industrial growth, local exports and a massive change to the air quality.",
+      "$contract_retailroyalty_00_title": "Retail Royalty",
+      "$contract_retailroyalty_00_text": "The wealthy elite expect exclusive retail spaces with top-tier goods and service. Provide them with lavish shopping centers that stand as symbols of prosperity and unapologetic excess. Does it even count if it doesn't sell a handbags worth more than a car?",
+      "$contract_affordableliving_00_title": "Affordable Living",
+      "$contract_affordableliving_00_text": "The government is urging you to construct extra apartments designed to provide affordable housing for low-income residents. They don't need luxury - just four walls and a roof. It's not glamorous, but keeps people housed, and tax rolls flowing.",
+      "$contract_residentialpotential_00_title": "Residential Potential",
+      "$contract_residentialpotential_00_text": "It's crucial for the city to have enough residential space for citizens who just want to live a peaceful life. Construct a good number of apartment buildings with adequate space, conditions, and facilities that meet the needs of middle-income residents.",
+      "$contract_highriseprestige_00_title": "Highrise Prestige",
+      "$contract_highriseprestige_00_text": "They want views, silence, and neighbors they never have to acknowledge. Build luxury apartments to attract and retain the city's upper class. Absolutely no compromises allowed!",
+      "$contract_ironthrone_00_title": "Iron Throne",
+      "$contract_ironthrone_00_text": "Factories are the backbone of the city's economy, producing goods and providing jobs for the population. Construct loud and ugly, but absolutely essential industrial plants to keep the economy running, and investors will reward your efforts."
     }
   }
 ]
