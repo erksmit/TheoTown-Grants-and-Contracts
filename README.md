@@ -18,6 +18,12 @@ This plugin introduces various structured monetary contracts and grants offered 
 ## Changelog
 A list of major changes to the public version will be kept up to date here.
 
+## Pre-release v0.2
+- Fixed contracts were available on the moon
+- Added dynamic goal display (can be enabled in the settings)
+- Added more contracts
+- Slightly adjusted some contract rewards
+
 ### Pre-release v0.1
 - Initial stable release with most planned features implemented.
 
