@@ -60,7 +60,10 @@ function Definitions.normalize(meta)
     contract.requirements = contract['requirements'] or {}
     contract.goals = contract['goals'] or {}
 
+    contract.requirements.rank = contract.requirements['rank']
     contract.requirements.contracts_completed = contract.requirements['contracts completed']
+    contract.requirements.income = contract.requirements['income']
+    contract.requirements.money = contract.requirements['money']
 
     if contract.goals.buildings then
         for _, b in ipairs(contract.goals.buildings) do
@@ -86,6 +89,9 @@ function Definitions.normalize(meta)
             h.value = h['value'] or 1
         end
     end
+
+    contract.goals.income = contract.goals['income']
+    contract.goals.money = contract.goals['money']
 
     return contract
 end

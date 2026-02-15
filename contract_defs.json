@@ -347,7 +347,8 @@
         "rank": 2
       },
       "goals": {
-        "income": 4000
+        "income": 4000,
+        "money": 25000
       }
     }
   },
@@ -370,7 +371,8 @@
         "contracts completed": ["$contract_pocketchange_00"]
       },
       "goals": {
-        "income": 15000
+        "income": 15000,
+        "money": 150000
       }
     }
   },
@@ -393,7 +395,8 @@
         "contracts completed": ["$contract_solidreturns_00"]
       },
       "goals": {
-        "income": 30000
+        "income": 30000,
+        "money": 1500000
       }
     }
   },
@@ -833,6 +836,63 @@
           {"id": "$ind20", "count": 3},
           {"id": "$ind28", "count": 3}
         ]
+      }
+    }
+  },
+  {
+    "id": "$contract_emergencybailout_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_emergencybailout_00",
+      "title id": "$contract_emergencybailout_00_title",
+      "text id": "$contract_emergencybailout_00_text",
+      "advance": 25000,
+      "completion": 25000,
+      "cancellation": 0,
+      "requirements": {
+        "rank": 3,
+        "income": -500,
+        "money": -500
+      },
+      "goals": {
+        "population": [
+          {"count": 1000}
+        ],
+        "income": 5000,
+        "money": 10000
+      }
+    }
+  },
+  {
+    "id": "$contract_toobigtofail_00",
+    "type": "data",
+    "index": true,
+    "meta": {
+      "tags": {
+        "contract": {}
+      },
+      "contract id": "$contract_toobigtofail_00",
+      "title id": "$contract_toobigtofail_00_title",
+      "text id": "$contract_toobigtofail_00_text",
+      "advance": 150000,
+      "completion": 150000,
+      "cancellation": 0,
+      "requirements": {
+        "rank": 10,
+        "contracts completed": ["$contract_emergencybailout_00"],
+        "income": -10000,
+        "money": -50000
+      },
+      "goals": {
+        "population": [
+          {"count": 5000}
+        ],
+        "income": 5000,
+        "money": 150000
       }
     }
   }

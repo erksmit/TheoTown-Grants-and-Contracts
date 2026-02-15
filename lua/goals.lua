@@ -169,4 +169,17 @@ Goals.registerHandler(
     }
 )
 
+Goals.registerHandler(
+    "money",
+    {
+        init = function(state, goals)
+            state.needsDailyCheck = true
+        end,
+
+        check = function(state, goal)
+            return City.getMoney() >= goal
+        end
+    }
+)
+
 return Goals

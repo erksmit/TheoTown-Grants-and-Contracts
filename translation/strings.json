@@ -30,6 +30,7 @@
       "$contracts_string_condition_happiness_no_type": "Reach happiness: %i%%/%i%%\n",
       "$contracts_string_condition_happiness_with_type": "Reach happiness (%s): %i%%/%i%%\n",
       "$contracts_string_condition_income": "Reach monthly income: %s/%s\n",
+      "$contracts_string_condition_money": "Have money: %s/%s\n",
       "$contracts_string_completed_title": "Contract complete",
       "$contracts_string_completed_text": "Congratulations! You have successfully completed the '%s' contract. The completion reward of %s has been transferred to the city's treasury.",
       "$contracts_string_rewards": "\nAdvance payment: %s\nCompletion reward: %s\nCancellation fee: %s",
@@ -101,7 +102,11 @@
       "$contract_highriseprestige_00_title": "Highrise Prestige",
       "$contract_highriseprestige_00_text": "They want views, silence, and neighbors they never have to acknowledge. Build luxury apartments to attract and retain the city's upper class. Absolutely no compromises allowed!",
       "$contract_ironthrone_00_title": "Iron Throne",
-      "$contract_ironthrone_00_text": "Factories are the backbone of the city's economy, producing goods and providing jobs for the population. Construct loud and ugly, but absolutely essential industrial plants to keep the economy running, and investors will reward your efforts."
+      "$contract_ironthrone_00_text": "Factories are the backbone of the city's economy, producing goods and providing jobs for the population. Construct loud and ugly, but absolutely essential industrial plants to keep the economy running, and investors will reward your efforts.",
+      "$contract_emergencybailout_00_title": "Emergency Bailout",
+      "$contract_emergencybailout_00_text": "Your city seems to be facing an economic crisis. Experts have concluded that allowing you to fail would be... inconvenient. Emergency governmental assistance has been issued to preserve stability, confidence, and reputation of everyone involved.\nNext time, try budgeting.",
+      "$contract_toobigtofail_00_title": "Too Big to Fail",
+      "$contract_toobigtofail_00_text": "Your city's innovative financial strategies have produced unexpected results. Rather than question your decisions, the government has opted to once again provide emergency support. Resecure a stable income while keeping people in the city to receive extra support.\nWe're sure this won't happen again."
     }
   }
 ]

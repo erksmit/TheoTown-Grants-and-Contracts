@@ -1,5 +1,5 @@
 
--- This module handles the generation of contract information strings for use in UI. Information contrains goals and rewards.
+-- This module handles the generation of contract information strings for use in UI. Information contains goals and rewards.
 
 local Definitions = require('definitions')
 
@@ -71,6 +71,12 @@ function InfoText.incomePreview(target)
     return getStatusString(current >= target) .. string.format(TheoTown.translate('$contracts_string_condition_income'), TheoTown.formatMoney(current), TheoTown.formatMoney(target))
 end
 
+function InfoText.moneyPreview(target)
+    local current = City.getMoney()
+
+    return getStatusString(current >= target) .. string.format(TheoTown.translate('$contracts_string_condition_money'), TheoTown.formatMoney(current), TheoTown.formatMoney(target))
+end
+
 -- The following functions are used in the live goal display and return text
 function InfoText.buildingsDisplay(goal)
     local draft = Draft.getDraft(goal.id)
@@ -133,6 +139,20 @@ function InfoText.incomeDisplay(target)
     return string.format(TheoTown.translate('$contracts_string_condition_income'), TheoTown.formatMoney(current), TheoTown.formatMoney(target)) .. getStatusString(c), getStatusColor(c)
 end
 
+function InfoText.incomeDisplay(target)
+    local current = City.getIncome()
+    local c = current >= target
+
+    return string.format(TheoTown.translate('$contracts_string_condition_income'), TheoTown.formatMoney(current), TheoTown.formatMoney(target)) .. getStatusString(c), getStatusColor(c)
+end
+
+function InfoText.moneyDisplay(target)
+    local current = City.getMoney()
+    local c = current >= target
+
+    return string.format(TheoTown.translate('$contracts_string_condition_money'), TheoTown.formatMoney(current), TheoTown.formatMoney(target)) .. getStatusString(c), getStatusColor(c)
+end
+
 -- Return a complete information string of a contract.
 function InfoText.getPreview(def)
     local text = TheoTown.translate('$contracts_string_condition_title')
@@ -163,6 +183,10 @@ function InfoText.getPreview(def)
 
     if def.goals.income then
         text = text .. InfoText.incomePreview(def.goals.income)
+    end
+
+    if def.goals.money then
+        text = text .. InfoText.moneyPreview(def.goals.money)
     end
 
     text = text .. string.format(
@@ -215,6 +239,13 @@ function InfoText.getDisplay(def)
     if def.goals.income then
         local text, color = InfoText.incomeDisplay(def.goals.income)
         table.insert(list, {text = text, color = color, offset = offset})
+        offset = offset + 15
+    end
+
+    if def.goals.money then
+        local text, color = InfoText.moneyDisplay(def.goals.money)
+        table.insert(list, {text = text, color = color, offset = offset})
+        offset = offset + 15
     end
 
     return list

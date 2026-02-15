@@ -17,6 +17,26 @@ function Requirements.status(def)
     local req = def.requirements
     if not req then return 'available' end
 
+    -- Monthly income requirement. Logic is inverted for negative income.
+    local income = City.getIncome()
+    if req.income then
+        if req.income >= 0 then
+            if income < req.income then return 'locked' end
+        elseif req.income < 0 then
+            if income >= req.income then return 'locked' end
+        end
+    end
+
+    -- Money at hand requirement. Logic is inverted for negative money.
+    local money = City.getMoney()
+    if req.money then
+        if req.money >= 0 then
+            if money < req.money then return 'locked' end
+        elseif req.money < 0 then
+            if money >= req.money then return 'locked' end
+        end
+    end
+
     -- Minimum rank requirement.
     local _, rank = City.getRank()
     if req.rank and rank < req.rank then

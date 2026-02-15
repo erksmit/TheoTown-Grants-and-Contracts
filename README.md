@@ -64,7 +64,9 @@ All requirements listed in the `"requirements"` object have to be fulfilled to a
 ```jsonc
 "requirements": {
   "rank": 3,
-  "contracts completed": ["$contract_example_00"] // Multiple contract IDs can be provided here.
+  "contracts completed": ["$contract_example_00"], // Multiple contract IDs can be provided here.
+  "income": 5000, // Minimum monthly income. Logic is inverted for negative values.
+  "money": 5000 // Same as above, but for money at hand. Logic switch also applies.
 }
 ```
 
@@ -89,7 +91,8 @@ All goals listed in the `"goals"` object have to be fulfilled to complete the co
     // At least "value" happiness of type "type" must be achieved. "type" is optional.
     {"type": "park", "value": 0.6}
   ],
-  "income": 3000 // At least this much monthly income is necessary. Since multiple income goals would be pointless, this one is not an array.
+  "income": 3000, // At least this much monthly income is necessary. Since multiple income goals would be pointless, this one is not an array.
+  "money": 3000 // Same as above, but for money at hand.
 }
 ```
 
