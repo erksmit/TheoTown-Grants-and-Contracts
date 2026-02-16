@@ -2,6 +2,7 @@
 -- This module handles the generation of contract information strings for use in UI. Information contains goals and rewards.
 
 local Definitions = require('definitions')
+local Settings = require('settings')
 
 local InfoText = {}
 
@@ -195,6 +196,13 @@ function InfoText.getPreview(def)
         TheoTown.formatMoney(def.completion),
         TheoTown.formatMoney(def.cancellation)
     )
+
+    if Settings.getDisplayIssuer() and def.issuer and def.issuer.title then
+        text = text .. string.format(
+            TheoTown.translate('$contracts_string_issuer'),
+            def.issuer.title
+        )
+    end
 
     return text
 end

@@ -47,6 +47,7 @@ Contracts are defined entirely through JSON. An example contract can be defined 
     "advance": 1000, // An optional advance payment granted when accepting the contract.
     "completion": 5000, // An optional (but preferably present) completion payment granted when fulfilling the contract's goals.
     "cancellation": 500, // An optional cancellation fee deducted when cancelling the contract. The advance payment has to be repaid as well when cancelling a contract.
+    "issuer": "government", // An optional issuer field. No gameplay impact, flavor only. Possible issuers are: "government", "ngo", "corporate", "elite", "locals".
     "requirements": { // Requirements for accepting the contract should be stored here. See below for extra information.
       "rank": 2
     },

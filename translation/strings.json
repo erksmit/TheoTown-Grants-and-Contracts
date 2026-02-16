@@ -34,19 +34,26 @@
       "$contracts_string_completed_title": "Contract complete",
       "$contracts_string_completed_text": "Congratulations! You have successfully completed the '%s' contract. The completion reward of %s has been transferred to the city's treasury.",
       "$contracts_string_rewards": "\nAdvance payment: %s\nCompletion reward: %s\nCancellation fee: %s",
+      "$contracts_string_issuer": "\n\nIssuer: %s",
+      "$contracts_string_issuer_government": "Government",
+      "$contracts_string_issuer_ngo": "NGO",
+      "$contracts_string_issuer_corporate": "Corporate",
+      "$contracts_string_issuer_elite": "Elite",
+      "$contracts_string_issuer_locals": "Locals",
 
-      "$contract_string_display_goals": "Display goals in city view",
+      "$contracts_string_display_goals": "Display goals in city view",
+      "$contracts_string_display_issuer": "Display flavor contract issuer in description",
 
       "$contract_expandededucation_00_title": "Expanded Education",
-      "$contract_expandededucation_00_text": "With a rapidly growing population, the demand for quality education has never been higher. The city needs several brand new elementary schools to accommodate the influx of new students. The governor would like to see at least 3 new state-of-the-art school buildings built in the city. Fulfill his wishes and a nice grant will come your way.",
+      "$contract_expandededucation_00_text": "With a rapidly growing population, the demand for quality education has never been higher. The city needs several brand new elementary schools to accommodate the influx of new students. The governor would like to see at least three new state-of-the-art school buildings constructed across the city. Fulfill his wishes and a nice grant will come your way.",
       "$contract_nuclearpower_00_title": "Nuclear Power",
       "$contract_nuclearpower_00_text": "Traditional power sources are struggling to keep up with the ever increasing demand for energy. A nuclear reactor would offer a very reliable, efficient, and relatively clean solution to keep homes and businesses running. The government is willing to invest loads of money to open a new nuclear power plant that would power the city. Just make sure to manage it safely!",
       "$contract_seatofgovernance_00_title": "Seat of Governance",
-      "$contract_seatofgovernance_00_text": "Every growing community needs a place for leadership and organization. Build a small town hall to serve as the administrative center, where citizens can access various services, voice concerns, and shape the future of their town. A well-run city starts with the right foundation!\nDon't forget about a small, quaint town square to go with the town hall building, too!",
+      "$contract_seatofgovernance_00_text": "Every growing community needs a place for leadership and organization. Build a small town hall to serve as the administrative center, where citizens can access various services, voice concerns, and shape the future of their town. A well-run city starts with the right foundation!\nDon't forget to include a small, quaint town square to accompany the town hall.",
       "$contract_publictransport_00_title": "Public Transport",
       "$contract_publictransport_00_text": "Every city needs a reliable public transport system to keep people moving. Busses are certainly the backbone of every efficient transit network, and the government is willing to chip in if you introduce them early. Well-planned bus lines mean fewer cars on the roads and more satisfied residents, so go ahead and build a brand new depot.",
       "$contract_goinggreeninitiative_00_title": "Going Green Initiative",
-      "$contract_goinggreeninitiative_00_text": "The future of energy is clean and sustainable! To reduce reliance on fossil fuels and cut emissions, the government is investing in renewable power. Build several solar panel arrays and wind turbines to create a greener, more efficient energy grid that keeps the city powered while protecting the environment. Investors will provide you with a substantial reward if you're able to meet their demands.",
+      "$contract_goinggreeninitiative_00_text": "The future of energy is clean and sustainable! To reduce reliance on fossil fuels and cut emissions, the government is investing in renewable power. Build several solar panel arrays and wind turbines to create a greener, more efficient energy grid that keeps the city powered while protecting the environment. Investors will provide substantial funding if you can meet their targets.",
       "$contract_agreenerneighbourhood_00_title": "A Greener Neighbourhood",
       "$contract_agreenerneighbourhood_00_text": "A livable city isn't just about buildings and roads - it needs green spaces for people to relax and enjoy. The local population is urging you to expand the city's parks. Build several small parks and improve existing ones to raise park satisfaction and give residents the outdoor spaces they deserve. Plazas and gardens should hopefully help attract wealthier people to move in, too.",
       "$contract_breakingground_00_title": "Breaking Ground",
@@ -71,7 +78,7 @@
       "$contract_windfallgains_00_text": "The government wants to see the city as a new economic powerhouse on the map. Push beyond stability and maximize your income to prove the city's strength.",
       "$contract_airtransitgrant_00_title": "Air Transit Grant",
       "$contract_airtransitgrant_00_text": "Airlines and investors see your city as a potential hub. An airport would bring in solid revenues by attracting new visitors and greatly increasing commercial demand. Construct a brand new regional terminal, and outside agencies will cover a part of the cost.",
-      "$contract_newneighbours_00_title": "New Neigbours",
+      "$contract_newneighbours_00_title": "New Neighbours",
       "$contract_newneighbours_00_text": "Investors won't commit to major projects without proof of stability. Grow your population to a respectable level to show them the city has the workforce and market for future growth.",
       "$contract_urbanexpansion_00_title": "Urban Expansion",
       "$contract_urbanexpansion_00_text": "Authorities want your settlement to rise beyond the small-town status. Increase the population to reach city scale and secure additional funding.",
@@ -94,7 +101,7 @@
       "$contract_liquidassets_00_title": "Liquid Assets",
       "$contract_liquidassets_00_text": "Beneath the ground lies opportunity. Establishing petroleum extraction and processing facilities will provide industrial growth, local exports and a massive change to the air quality.",
       "$contract_retailroyalty_00_title": "Retail Royalty",
-      "$contract_retailroyalty_00_text": "The wealthy elite expect exclusive retail spaces with top-tier goods and service. Provide them with lavish shopping centers that stand as symbols of prosperity and unapologetic excess. Does it even count if it doesn't sell a handbags worth more than a car?",
+      "$contract_retailroyalty_00_text": "The wealthy elite expect exclusive retail spaces with top-tier goods and service. Provide them with lavish shopping centers that stand as symbols of prosperity and unapologetic excess. Does it even count if it doesn't sell handbags worth more than a car?",
       "$contract_affordableliving_00_title": "Affordable Living",
       "$contract_affordableliving_00_text": "The government is urging you to construct extra apartments designed to provide affordable housing for low-income residents. They don't need luxury - just four walls and a roof. It's not glamorous, but keeps people housed, and tax rolls flowing.",
       "$contract_residentialpotential_00_title": "Residential Potential",
@@ -106,7 +113,7 @@
       "$contract_emergencybailout_00_title": "Emergency Bailout",
       "$contract_emergencybailout_00_text": "Your city seems to be facing an economic crisis. Experts have concluded that allowing you to fail would be... inconvenient. Emergency governmental assistance has been issued to preserve stability, confidence, and reputation of everyone involved.\nNext time, try budgeting.",
       "$contract_toobigtofail_00_title": "Too Big to Fail",
-      "$contract_toobigtofail_00_text": "Your city's innovative financial strategies have produced unexpected results. Rather than question your decisions, the government has opted to once again provide emergency support. Resecure a stable income while keeping people in the city to receive extra support.\nWe're sure this won't happen again."
+      "$contract_toobigtofail_00_text": "Your city's innovative financial strategies have produced unexpected results. Rather than question your decisions, the government has opted to once again provide emergency support. Restore stable income while keeping people in the city to receive extra assistance.\nWe're sure this won't happen again."
     }
   }
 ]

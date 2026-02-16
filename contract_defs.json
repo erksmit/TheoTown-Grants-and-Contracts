@@ -13,6 +13,7 @@
       "advance": 10000,
       "completion": 100000,
       "cancellation": 20000,
+      "issuer": "government",
       "requirements": {
         "rank": 9
       },
@@ -37,6 +38,7 @@
       "advance": 50000,
       "completion": 1000000,
       "cancellation": 75000,
+      "issuer": "government",
       "requirements": {
         "rank": 11
       },
@@ -61,6 +63,7 @@
       "advance": 1000,
       "completion": 2000,
       "cancellation": 500,
+      "issuer": "government",
       "requirements": {
         "rank": 3
       },
@@ -86,6 +89,7 @@
       "advance": 2000,
       "completion": 10000,
       "cancellation": 5000,
+      "issuer": "locals",
       "requirements": {
         "rank": 3
       },
@@ -110,6 +114,7 @@
       "advance": 5000,
       "completion": 25000,
       "cancellation": 10000,
+      "issuer": "ngo",
       "requirements": {
         "rank": 8
       },
@@ -135,6 +140,7 @@
       "advance": 3000,
       "completion": 5000,
       "cancellation": 500,
+      "issuer": "locals",
       "requirements": {
         "rank": 4
       },
@@ -163,6 +169,7 @@
       "advance": 500,
       "completion": 7500,
       "cancellation": 1000,
+      "issuer": "government",
       "requirements": {
         "rank": 0
       },
@@ -191,6 +198,7 @@
       "advance": 1000,
       "completion": 7500,
       "cancellation": 1500,
+      "issuer": "locals",
       "requirements": {
         "rank": 3
       },
@@ -219,6 +227,7 @@
       "advance": 25000,
       "completion": 5000,
       "cancellation": 3000,
+      "issuer": "government",
       "requirements": {
         "rank": 5
       },
@@ -245,6 +254,7 @@
       "advance": 20000,
       "completion": 10000,
       "cancellation": 5000,
+      "issuer": "government",
       "requirements": {
         "rank": 7
       },
@@ -269,6 +279,7 @@
       "advance": 20000,
       "completion": 15000,
       "cancellation": 10000,
+      "issuer": "government",
       "requirements": {
         "rank": 10,
         "contracts completed": ["$contract_expandededucation_00"]
@@ -295,6 +306,7 @@
       "advance": 12000,
       "completion": 20000,
       "cancellation": 3000,
+      "issuer": "government",
       "requirements": {
         "rank": 7
       },
@@ -319,6 +331,7 @@
       "advance": 5000,
       "completion": 15000,
       "cancellation": 10000,
+      "issuer": "government",
       "requirements": {
         "rank": 10
       },
@@ -343,6 +356,7 @@
       "advance": 500,
       "completion": 7500,
       "cancellation": 750,
+      "issuer": "government",
       "requirements": {
         "rank": 2
       },
@@ -366,6 +380,7 @@
       "advance": 1500,
       "completion": 12500,
       "cancellation": 2000,
+      "issuer": "government",
       "requirements": {
         "rank": 5,
         "contracts completed": ["$contract_pocketchange_00"]
@@ -390,6 +405,7 @@
       "advance": 5000,
       "completion": 25000,
       "cancellation": 7500,
+      "issuer": "government",
       "requirements": {
         "rank": 10,
         "contracts completed": ["$contract_solidreturns_00"]
@@ -414,6 +430,7 @@
       "advance": 750000,
       "completion": 1000000,
       "cancellation": 100000,
+      "issuer": "corporate",
       "requirements": {
         "rank": 12
       },
@@ -445,6 +462,7 @@
       "advance": 1000,
       "completion": 10000,
       "cancellation": 500,
+      "issuer": "corporate",
       "requirements": {
         "contracts completed": ["$contract_breakingground_00"]
       },
@@ -469,6 +487,7 @@
       "advance": 10000,
       "completion": 25000,
       "cancellation": 5000,
+      "issuer": "government",
       "requirements": {
         "contracts completed": ["$contract_newneighbours_00"]
       },
@@ -493,6 +512,7 @@
       "advance": 25000,
       "completion": 50000,
       "cancellation": 7500,
+      "issuer": "corporate",
       "requirements": {
         "contracts completed": ["$contract_urbanexpansion_00"]
       },
@@ -517,6 +537,7 @@
       "advance": 100,
       "completion": 4000,
       "cancellation": 1500,
+      "issuer": "locals",
       "requirements": {
         "rank": 1
       },
@@ -543,6 +564,7 @@
       "advance": 2000,
       "completion": 5000,
       "cancellation": 200,
+      "issuer": "elite",
       "requirements": {
         "rank": 8,
         "contracts completed": ["$contract_learningandleisure_00"]
@@ -568,6 +590,7 @@
       "advance": 500,
       "completion": 2000,
       "cancellation": 100,
+      "issuer": "elite",
       "requirements": {
         "contracts completed": ["$contract_learningandleisure_00"]
       },
@@ -592,6 +615,7 @@
       "advance": 500,
       "completion": 2000,
       "cancellation": 100,
+      "issuer": "elite",
       "requirements": {
         "rank": 10
       },
@@ -616,6 +640,7 @@
       "advance": 5000,
       "completion": 7500,
       "cancellation": 2500,
+      "issuer": "ngo",
       "requirements": {
         "rank": 12
       },
@@ -641,6 +666,7 @@
       "advance": 2000,
       "completion": 10000,
       "cancellation": 5000,
+      "issuer": "corporate",
       "requirements": {
         "rank": 12
       },
@@ -667,6 +693,7 @@
       "advance": 1500,
       "completion": 7500,
       "cancellation": 4000,
+      "issuer": "corporate",
       "requirements": {
         "rank": 12
       },
@@ -691,6 +718,7 @@
       "advance": 500,
       "completion": 4000,
       "cancellation": 2000,
+      "issuer": "corporate",
       "requirements": {
         "rank": 12
       },
@@ -717,6 +745,7 @@
       "advance": 5000,
       "completion": 15000,
       "cancellation": 10000,
+      "issuer": "elite",
       "requirements": {
         "rank": 13
       },
@@ -743,6 +772,7 @@
       "advance": 2000,
       "completion": 7500,
       "cancellation": 4000,
+      "issuer": "government",
       "requirements": {
         "rank": 5
       },
@@ -770,6 +800,7 @@
       "advance": 4000,
       "completion": 15000,
       "cancellation": 8000,
+      "issuer": "government",
       "requirements": {
         "rank": 7
       },
@@ -798,6 +829,7 @@
       "advance": 7500,
       "completion": 25000,
       "cancellation": 12000,
+      "issuer": "elite",
       "requirements": {
         "rank": 13
       },
@@ -825,6 +857,7 @@
       "advance": 5000,
       "completion": 18000,
       "cancellation": 10000,
+      "issuer": "corporate",
       "requirements": {
         "rank": 8
       },
@@ -853,6 +886,7 @@
       "advance": 25000,
       "completion": 25000,
       "cancellation": 0,
+      "issuer": "government",
       "requirements": {
         "rank": 3,
         "income": -500,
@@ -881,6 +915,7 @@
       "advance": 150000,
       "completion": 150000,
       "cancellation": 0,
+      "issuer": "government",
       "requirements": {
         "rank": 10,
         "contracts completed": ["$contract_emergencybailout_00"],

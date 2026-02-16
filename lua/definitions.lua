@@ -1,6 +1,8 @@
 
 -- This module handles contract definitions extracted from json data.
 
+local Assets = require('assets')
+
 local Definitions = {}
 
 local contract_definitions = {}
@@ -53,6 +55,27 @@ function Definitions.normalize(meta)
     contract.advance = contract['advance'] or 0
     contract.completion = contract['completion'] or 0
     contract.cancellation = contract['cancellation'] or 0
+
+    local issuerType = contract.issuer
+    contract.issuer = {type = issuerType}
+    contract.issuer.icon = Icon.SETTINGS
+
+    if issuerType == 'government' then
+        contract.issuer.title = TheoTown.translate('$contracts_string_issuer_government')
+        contract.issuer.icon = Assets.FRAMES.ISSUER_GOVERNMENT
+    elseif issuerType == 'ngo' then
+        contract.issuer.title = TheoTown.translate('$contracts_string_issuer_ngo')
+        contract.issuer.icon = Assets.FRAMES.ISSUER_NGO
+    elseif issuerType == 'corporate' then
+        contract.issuer.title = TheoTown.translate('$contracts_string_issuer_corporate')
+        contract.issuer.icon = Assets.FRAMES.ISSUER_CORPORATE
+    elseif issuerType == 'elite' then
+        contract.issuer.title = TheoTown.translate('$contracts_string_issuer_elite')
+        contract.issuer.icon = Assets.FRAMES.ISSUER_ELITE
+    elseif issuerType == 'locals' then
+        contract.issuer.title = TheoTown.translate('$contracts_string_issuer_locals')
+        contract.issuer.icon = Assets.FRAMES.ISSUER_LOCALS
+    end
 
     contract.title = contract['title'] or TheoTown.translate(contract['title id']) or 'title'
     contract.text = contract['text'] or TheoTown.translate(contract['text id']) or 'text'

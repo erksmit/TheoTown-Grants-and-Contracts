@@ -112,7 +112,7 @@ function UI.createContractPreview(menu, def, state, status)
 
     -- Create the preview dialog.
     local preview = GUI.createDialog{
-        icon = Icon.SETTINGS,
+        icon = def.issuer.icon,
         title = def.title,
         text = def.text .. InfoText.getPreview(def),
         height = 300,
